@@ -1,10 +1,10 @@
 # IT461-Project
 
-Group Members:
-1.) Monching Desierto
-2.) Zack Hilacan
-3.) Franz Laconsay
-4.) Primrose Manlosa
-5.) Ervin Pelonio 
-6.) Mark Kenith Simbajon
-7.) Sean Kelly Yutiampo
+#### Group Members:
+> 1.) Desierto, Monching   
+2.) Hilacan, Zack   
+3.) Laconsay, Franz   
+4.) Manlosa, Primrose   
+5.) Pelonio, Ervin   
+6.) Simbajon, Mark Kenith   
+7.) Yutiampo, Sean Kelly   
