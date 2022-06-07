@@ -1,0 +1,308 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Customer Registration</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+      
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="50X50" href="{% static 'css/logoTS.png' %}">
+    
+
+    <!-- Custom CSS for UI-->
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+    
+    <!-- form validation -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src = "{% static 'js/form-validation.js' %}"></script>
+    <script type="text/javascript" src = "{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+    
+        <style> 
+
+            .col-lg-7 {
+                background: rgba(233, 234, 236, 0.537);
+                border-radius: 25px;
+                padding: 30px;
+                width: 50%;
+                /* transform: translate(-50%, -50%); */
+            }   
+        </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin6">
+            <nav class="navbar top-navbar navbar-expand-md">
+                <div class="navbar-header" data-logobg="skin6">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <div class="navbar-brand">
+                        <!-- Logo icon -->
+                        <a href="#">
+                            <b class="logo-icon">
+                                <!-- Dark Logo icon -->
+                                <img src="{% static 'css/logoTS.png' %}" alt="homepage" class="dark-logo" width ="60px" height="65"/>
+                                
+                            </b>
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span class="logo-text">
+                                <!-- dark Logo text -->
+                                <img src="{% static 'css/text-logoTS.png' %}" alt="homepage" class="dark-logo" width ="150px" height="80" style="margin-left: 0px; padding: 0px"/>
+                                
+                            </span>
+                        </a>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                        data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i
+                            class="ti-more"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar" data-sidebarbg="skin6">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                    class="hide-menu">Dashboard </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="{% url 'dashboard:customer' %}" class="sidebar-link"><span
+                                            class="hide-menu"> Customer
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{% url 'dashboard:customer' %}" class="sidebar-link"><span
+                                            class="hide-menu"> Product
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="list-divider"></li>
+                        
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+            <!--</div>!-->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                
+                <!-- multi-column ordering -->
+                
+          <div class="d-flex justify-content-center align-items-center container">
+            <div class="col-lg-7">
+                <div class="container" >
+                            <!--<a href="product.html" class="previous round">&#8249;</a>-->
+                    <div class="pb-4 text-center">
+                                
+                      <!--<img class="d-block mx-auto" src="Bking.jpg" alt="" width="30%" height="30%">-->
+                      <h2>CUSTOMER REGISTRATION</h2>
+                      <!--<p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>-->
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center container">
+                    <div class="col-lg-8 login-left">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="text">First Name</label>
+                                        <input type="text" name="firstname" class="form-control" placeholder="" required>
+                                    </div>
+                                    <div class="col">
+                                        <label class="text">Last Name</label>
+                                        <input type="text" name="lastname" class="form-control" placeholder="" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="text">Date Registered</label>
+                                <div class="input-group">
+                                    <input class="form-control" name="date_register" placeholder="MM/DD/YYYY" type="date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="text">Address</label>
+                                <input type="text" name="address" class="form-control" required>
+                            </div>
+                            <div class="form-group ">
+                                <label class="text">Birth Date</label>
+                                </label>
+                                <div class="input-group">
+                                    <input class="form-control" name="date_bday" placeholder="MM/DD/YYYY" type="date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Birthplace</label>
+                                <select class="form-control" name="birthplace" required>
+                                  <option>Cebu City</option>
+                                  <option>Lapu-Lapu City</option>
+                                  <option>Talisay City</option>
+                                  <option>Carcar City</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="text">Email</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text">Username</label>
+                                <input type="text" name="username" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text">Password</label>
+                                <input type="password" name="password" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="text">Contact No.</label>
+                                <input type="text" minlength="11" maxlength="11" pattern="[0-9]*" name="contact" class="form-control" required>
+                            </div>
+                            <input type="submit" name="register_btn" class="btn btn-primary" value="Register"> <br><br>
+                        </form>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        
+        </div>      
+
+
+                    
+                            
+                
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center text-muted">
+                
+                
+                <p style="margin-top: 50px">All Rights Reserved by Techmart.  </p>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#form1').bootstrapValidator();
+        });
+    </script>
+
+    <!-- Scripts for web UI-->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    
+     
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <!--<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    
+    <!-- apps -->
+    <!-- apps -->
+    <script src="{% static 'js/app-style-switcher.js' %}"></script>
+    <script src="{% static 'js/feather.min.js' %}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'js/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script src="{% static 'js/sparkline.js' %}"></script>
+    <!--Wave Effects -->
+    <!-- themejs -->
+    <!--Menu sidebar -->
+    <script src="{% static 'js/sidebarmenu.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    
+    
+</body>
+
+</html>

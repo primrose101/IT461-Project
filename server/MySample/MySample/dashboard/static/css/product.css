@@ -1,0 +1,20 @@
+
+.custom-control-input:checked ~ .custom-control-label::before {
+			  color: #fff;
+			  border-color:darkorange;
+			  background-color: darkorange;
+			}
+.lh-condensed {line-height: 1.25;}
+.text-color{color: white;}
+.text-color a{
+				text-decoration-line: :none;
+				color: white;
+}
+
+.col-lg-7 {
+    background: hsla(13, 100%, 87%,0.5);
+    border-radius: 25px;
+    padding: 50px;
+    width: 50%;
+    /* transform: translate(-50%, -50%); */
+}

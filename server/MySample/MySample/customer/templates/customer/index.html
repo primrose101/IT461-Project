@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <script scr="js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Alike' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'path/to/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="icon" type="image/png" sizes="50X50" href="{% static 'css/logoTS.png' %}">
+</head>
+
+<body>    
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="{% static 'pic2.png' %}" alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="font-weight-normal display-1 text-white">TECHMART</h1>
+                <button style="border-radius: 50px" type="button" class="btn btn-success text-white btn-lg" data-toggle="modal" data-target="#about">
+                    About
+                  </button>
+                  <button style="border-radius: 50px" type="button" class="btn btn-warning text-white btn-lg" data-toggle="modal" data-target="#contact">
+                    Contact Us
+                  </button> <br>
+              </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{% static 'pic3.png' %}" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{% static 'pic1.png' %}" alt="Third slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col" style="font-family: 'Abril Fatface';font-size: 22px;">
+                <h1>Best Merchandise</h1>
+                <h1>You Can Find Online!</h1>
+                <p style="font-family: 'ABeeZee';font-size: 18px;" class="text-justify">"TechMart's the top online shopping site in the country, has made several shifts in the e-commerce business in the Philippines, creating an avenue for sellers to promote their items online, 
+                    and to give Filipinos new ways to discover and buy the best options for themselves. With seven years of quality service through their website and mobile app, its constantly growing the inventory of items, and offering convenient payment options, the true effortless shopping experience begins once again through TechMart's new platform."
+                </p>
+                <div>
+                    <button style="border-radius: 50px" type="button" class="btn btn-outline-dark text-dark btn-lg" data-toggle="modal" data-target="#login">
+                        Login
+                      </button>
+                </div>
+            </div>
+
+            <div class="col">
+                <img src="{% static 'content.png' %}" class="rounded float-right" alt="">
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-1">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #6eb5ff;">
+                    <h5 class="modal-title" id="exampleModalLongTitle">CONTACT US</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body my-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Name</label>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="First name">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Last name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-4">
+                                <label for="formGroupExampleInput">Email</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Message</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Your Message"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="d-flex justify-content-center text-center">
+                        <a href="#" class="fa fa-facebook"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="fa fa-twitter"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" class="fa fa-google"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a style="border-radius: 50px;" type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Submit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
+     <!-- Modal -->
+     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #6eb5ff;">
+                    <h5 class="modal-title" id="exampleModalLongTitle">ADMIN LOGIN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body my-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Username</label>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Username">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-4">
+                                <label for="formGroupExampleInput">Password</label>
+                                <input type="password" class="form-control" id="formGroupExampleInput" placeholder="Password">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-outline-primary btn-lg" style="border-radius: 50px" href="{% url 'dashboard:customer_view' %}" role="button">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
+    <!-- Modal About-->
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #6eb5ff;">
+                    <h5 class="modal-title" id="exampleModalLongTitle">ABOUT US</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <hr style="border: 1px solid black;">
+                    <p style="font-family: 'Alike'; font-size: 16px; text-align:center;">"We are all very different. We were born in different cities, at different times, we love different music, food, movies. But we have something that unites us all. It is our company. We are its heart. We are not just a team, we are
+                        a family."
+                    </p>
+                    <hr style="border: 1px solid black;">
+                </div>
+                <div class="modal-footer">
+                    <a style="border-radius: 50px;" type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal About-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

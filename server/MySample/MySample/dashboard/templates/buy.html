@@ -1,0 +1,252 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+                  
+                <!--bootstrap-table CSS-->
+                <link rel="stylesheet" href="{% static 'css/bootstrap-table.min.css' %}">
+                <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
+
+                <!-- Favicon icon -->
+                <link rel="icon" type="image/png" sizes="50X50" href="{% static 'css/logoTS.png' %}">
+                
+                <!-- Custom CSS for UI-->
+                <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+                <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+                
+
+                <!-- form validation -->
+                <script type="text/javascript" src = "{% static 'js/form-validation.js' %}"></script>
+                <script type="text/javascript" src = "{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+                <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+                <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js">
+                </script>
+                <style>
+                    .dataTables_filter {
+                       display: none;
+                    }
+                </style>
+                
+               
+                </div>
+                    
+                    <div class="container mb-2 mt-2">  
+                    
+                    <table 
+                            id="table" 
+                            class="display table"
+                            data-toggle = "table"
+                            data-pagination = "true"
+
+                            data-search = "true"
+                            data-search-align = "left"
+                            data-show-column = "true"
+                            data-show-toggle = "false"
+                            data-show-fullscreen = "false"
+                            data-show-refresh = "false"
+                            data-show-pagination-switch = "true"
+                            data-pagination-pre-text = "Previous"
+                            data-pagination-next-text = "Next"
+                            data-pagination-h-align = "left"
+                            data-pagination-detail-h-align = "right"
+                            data-page-list = "[5, 10, 20, All]"
+                            
+                            data-show-export ="false"
+                            style="size:100%">
+
+                      <thead class="bg-info text-white">
+                          <tr>
+                              <th  data-field="category" data-sortable="false" data-switchable="false">Category</th>
+                              <th  data-field="image" data-sortable="false" data-switchable="false">Photos</th>
+                              <th data-field="brand" data-sortable="false" data-switchable="false">Product</th>
+                              <th data-field="name" data-sortable="false" data-switchable="false">Description</th>
+                              <th  data-field="price" data-sortable="false" data-switchable="false">Price</th>
+                              <th data-field="edit" data-sortable="false" data-switchable="false">Transaction</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        
+                        {% for prod in products %}                          
+                        <tr>
+                            <td>{{prod.category}}</td>
+                            <td>
+                                {% if prod.image %}
+                                <img src="{{prod.image.url}}" alt="photo" id = "image" width="160px" height="170px" style="border-radius: 8px; border: 1px solid #ddd; padding: 5px;" />
+                                  <!--<img src="{% static 'images/honor8x.jpg' %}" width="60px" height="70px" style="border-radius: 8px; border: 1px solid #ddd; padding: 5px;"/>-->
+                                {% else %}
+                                  <img src="{% static 'images/default.png' %}" width="160px" height="170px" tyle="border-radius: 8px; border: 1px solid #ddd; padding: 5px;"/><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                {% endif %}
+                            </td>
+                            <td><strong>{{prod.name}} ({{prod.brand}})</strong></td>
+                            <td>{{prod.description}}, {{prod.size}}, {{prod.color}}</td>
+                            <td>Php {{prod.price|floatformat:2}}</td>
+                            
+                            <td>
+                                <button class="btn btn-primary" href="#" style="padding: 10px;" data-toggle="modal" data-target="#newModal-{{prod.id}}"
+                                >PURCHASE</button>
+                                <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{prod.id}}">
+                                  DELETE
+                                </button>-->
+                            </td>
+                        </tr>
+                        <!-- Modal VIEW-->
+                        <div class="modal fade" id="newModal-{{prod.id}}" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
+                            <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                                <div class="modal-header  bg-color--gray" >
+                                  <h5 class="modal-title" style="color:Black"> Your Cart </h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                
+                                </div>
+                                
+                                <form class="needs-validation" action="" id="form2" method="POST" autocomplete="off" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="modal-body">
+                                        <input type="text" name="prod-id" value = {{prod.id}} hidden>
+                                        
+                                        <div class="row">
+                                                <div class="col-md-5 mb-3">
+                                                    <label for="">Product</label>
+                                                    <br>
+                                                    {{ prod.name }}
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                  <label for="">Quantity</label>
+                                                  
+                                                  <Select class="form-control" id="id-quantity" name="prod-quantity" value = '1'>
+                                                            
+                                                            <option> 1 </option>
+                                                            <option> 2 </option>
+                                                            <option> 3  </option>
+                                                            <option> 4  </option>
+                                                            <option> 5 </option>              
+                                                  </Select>
+
+                                                </div>
+                                                <div class="col-md-5 mb-3">
+                                                    <label for="">Price per Product</label>
+                                                    <br>
+                                                    {{ prod.price }}
+                                                </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                                      <button type="submit" id = "btnPurchase" name = "btnPurchase"  class="btn btn-primary">BUY</button>
+                                    </div>  
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                      </tbody>
+                      
+                      </table>
+                    </div>
+                
+                
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <footer class="footer text-center text-muted">
+                <!-- <form id="form1" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                <button type="submit" id = "btnCart" name = "btnCart" class="btn btn-primary">
+                          View Cart 
+                </button>
+              </form> -->
+                
+                <p style="margin-top: 50px">All Rights Reserved by Techmart.  </p>
+            </footer>
+            
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#form2').bootstrapValidator();
+        });
+    </script>
+
+    <!-- Scripts Datatable-->
+    <script src = "https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+    <!--
+    <script src="https://unpkg.com/libs/jsPDF.min.js"></script>
+    <script src="https://unpkg.com/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.17.1/bootstrap-table.min.js"></script>
+    <!--<script src="extensions/print/bootstrap-table-print.min.js"></script>-->
+    <script src="{% static 'js/bootstrap-table-export.min.js' %}"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    
+    
+
+ <!-- data table -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        
+        <!-- default -->
+        <!--<script>
+          $('#table').dataTable( {
+                paging: false,
+                info: false,
+            });
+          $(".dataTables_info").hide();
+        </script>-->
+
+        <script>
+         
+          $('#table').dataTable( {
+                paging: false,
+                info: false,
+                columnDefs: [
+                    { visible: false, targets: 0 },
+                    
+                ],
+                order: [[ 0, 'asc']],
+                displayLength: 25,
+                drawCallback: function ( settings ) {
+                    var api = this.api();
+                    var rows = api.rows( {page:'current'} ).nodes();
+                    var last = null;
+
+                    api.column(0, {page:'current'}).data().each( function (group, i){
+                        if( last !== group ){
+                            $(rows).eq( i ).before(
+                                '<tr class="bg-light text-dark"> <td colspan="5">'+group+'</td></tr>'
+                            );
+                        }
+                        last = group;
+                    });
+                }
+            });
+          $(".dataTables_info").hide();
+        </script>
+
+        <!-- by category -->
+        <!--<script>
+          $('#table').dataTable( {
+                paging: false,
+                info: false,
+            });
+          $(".dataTables_info").hide();
+        </script>-->
+
+        
+    
+{% endblock content %}
