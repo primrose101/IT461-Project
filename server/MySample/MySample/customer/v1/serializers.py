@@ -39,7 +39,6 @@ class UpdateListSerializer(serializers.ListSerializer):
         return result
     
 class CustomersSerializer(DynamicFieldsModelSerializer, serializers.ModelSerializer):
-    password = serializers.CharField(write_only = True)
     class Meta:
         model = Customer
         fields = '__all__'
