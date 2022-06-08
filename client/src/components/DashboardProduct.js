@@ -15,7 +15,6 @@ function DashboardProduct () {
     const getData = async (url, options) => {
         setUrl(url);
         try {
-            console.log("was here");
             const response = await axios.get(url, options);
             console.log(response.data)
             setData(response.data);
@@ -37,14 +36,14 @@ function DashboardProduct () {
     return (
         <div className="row">
             <div className="col-3">
-                <Aside/>
+                <Aside active={"products"}/>
             </div>
-            <div col-9>
+            <div className="col-9">
                 <h2>Dashboard Products</h2>
                 <table className="table table-bordered table-hover">
                     <thead className="bg-primary text-white">
                         <tr>
-                            <th>ID no.</th>
+                            <th>ID</th>
                             <th>Datestamp</th>
                             <th>Category</th>
                             <th>Brand</th>
@@ -53,7 +52,7 @@ function DashboardProduct () {
                             <th>Price</th>
                             <th>Stocks</th>
                             <th>Photos</th>
-                            <th></th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody className="text-center">
