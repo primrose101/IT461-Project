@@ -24,11 +24,92 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"/>
+    <link rel="stylesheet" href="%PUBLIC_URL%/static_files/css/bootstrap-table.min.css"/>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="50X50" href="%PUBLIC_URL%/static_files/css/logoTS.png"/>
+
+    <!-- This page plugin CSS -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="%PUBLIC_URL%/static_files/css/style.min.css"/>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- hide default search bar -->
+    <style>
+        .dataTables_filter {
+            display: none;
+        }
+        
+        input {
+            border: 2px solid #5f76e8;
+            border-radius: 8px;
+        }
+    </style>
     <title>React App</title>
   </head>
+
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div>
+     
+      <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+
+          <header class="topbar" data-navbarbg="skin6">
+              <nav class="navbar top-navbar navbar-expand-md">
+                  <div class="navbar-header" data-logobg="skin6">
+                      <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                              class="ti-menu ti-close"></i></a>
+                  
+                      <div class="navbar-brand">
+                          <a href="">
+                              <b class="logo-icon">
+                                  <img src="%PUBLIC_URL%/static_files/css/logoTS.png" alt="homepage" class="dark-logo" width ="60px" height="65"/>
+                                  
+                              </b>
+                              <span class="logo-text">
+                                  <img src="%PUBLIC_URL%/static_files/css/text-logoTS.png" alt="homepage" class="dark-logo" width ="150px" height="80" style="margin-left: 0px; padding: 0px;"/>
+                                  
+                              </span>
+                          </a>
+                      </div>
+                      <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i
+                              class="ti-more"></i></a>
+                  </div>
+                  </nav>
+          </header>
+              <aside class="left-sidebar" data-sidebarbg="skin6">
+                  <div class="scroll-sidebar" data-sidebarbg="skin6">
+                      <nav class="sidebar-nav">
+                          <ul id="sidebarnav">
+                              <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                          class="hide-menu">Dashboard </span></a>
+                                  <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                      <li class="sidebar-item"><a href="dashboard/product" class="sidebar-link"><span
+                                                  class="hide-menu"> Customer
+                                              </span></a>
+                                      </li>
+                                      <li class="sidebar-item"><a href="dashboard/customer" class="sidebar-link"><span
+                                                  class="hide-menu"> Product
+                                              </span></a>
+                                      </li>
+                                  </ul>
+                              </li>
+                              <li class="list-divider"></li>
+
+                          </ul>
+                      </nav>
+                  </div>
+              </aside>
+              <div class="page-wrapper">
+                  <div class="container-fluid">
+                    <div id="root"></div>
+                  </div>
+              </div>
+      </div>
+  </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -40,4 +121,39 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+   <!-- Scripts -->
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+
+   <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.17.1/bootstrap-table.min.js"></script>
+   <script src="%PUBLIC_URL%/js/bootstrap-table-export.min.js"></script>
+
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script>
+       var table = $('#table')
+
+       $('select').on('change', function() {
+
+           table.bootstrapTable({
+               exportDataType: $(this).val(),
+               exportTypes: 'excel'
+           })
+       });
+   </script>
+
+   <!-- date filter -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+  <script src="%PUBLIC_URL%/static_files/js/app-style-switcher.js"></script>
+    <script src="%PUBLIC_URL%/static_files/js/feather.min.js"></script>
+    <script src="%PUBLIC_URL%/static_files/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="%PUBLIC_URL%/static_files/js/sparkline.js"></script>
+    <script src="%PUBLIC_URL%/static_files/js/sidebarmenu.js"></script>
+    <script src="%PUBLIC_URL%/static_files/js/custom.min.js"></script>
 </html>
