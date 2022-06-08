@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 function Home () {
     return (
-        <Link to="dashboard/product">Dashboard Product</Link>
+        <div>
+            <Link to="dashboard/product">Dashboard Product</Link><br/>
+            <Link to="dashboard/customer">Dashboard Customer</Link>  
+        </div>
     );
 }
 
