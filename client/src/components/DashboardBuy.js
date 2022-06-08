@@ -60,7 +60,7 @@ function DashboardBuy () {
                                 <td>{ d['description'] }, { d['size'] }, { d['color'] } </td>
                                 <td>Php { parseFloat(d['price']).toFixed(2) }</td>
                                 <td>
-                                    <button className="btn btn-warning btn-sm">Buy</button>
+                                    <button className="btn btn-outline-success btn-sm">Buy</button>
                                 </td>
                             </tr>
                         )) }
