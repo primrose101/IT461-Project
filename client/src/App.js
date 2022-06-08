@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import DashboardBuy from './components/DashboardBuy';
-import Aside from './components/Aside';
+import DashboardOrder from './components/DashboardOrder';
 
 function App() {
   return (
@@ -16,9 +16,10 @@ function App() {
         <Nav/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard/product" element={<DashboardProduct/>}/>
-          <Route path="/dashboard/customer" element={<DashboardCustomer/>}/>
+          <Route path="/dashboard/products" element={<DashboardProduct/>}/>
+          <Route path="/dashboard/customers" element={<DashboardCustomer/>}/>
           <Route path="/dashboard/buy" element={<DashboardBuy/>}/>
+          <Route path="/dashboard/orders" element={<DashboardOrder/>}/>
         </Routes>
       </div>
     </Router>
