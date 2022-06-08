@@ -52,7 +52,7 @@ function DashboardProduct () {
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="text-center">
                     { data['results'].map((d) => (
                         <tr>
                             <td>{ d['id'] }</td>
@@ -64,7 +64,7 @@ function DashboardProduct () {
                             <td>{ d['price'] }</td>
                             <td>{ d['stocks'] }</td>
                             <td>
-                                <img src={ d['image'] } alt={ d['id'] } width="80px" height="60px" />
+                                <img src={ d['image'] } alt={ d['id'] } width="auto" height="80px" />
                             </td>
                             <td>
                                 <button className="btn btn-warning btn-sm">Edit</button>

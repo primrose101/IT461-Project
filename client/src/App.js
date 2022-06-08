@@ -6,6 +6,7 @@ import DashboardCustomer from './components/DashboardCustomer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './components/Home';
+import DashboardBuy from './components/DashboardBuy';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard/product" element={<DashboardProduct/>}/>
           <Route path="/dashboard/customer" element={<DashboardCustomer/>}/>
+          <Route path="/dashboard/buy" element={<DashboardBuy/>}/>
         </Routes>
       </div>
     </Router>
