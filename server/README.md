@@ -19,8 +19,7 @@ other prerequisites:
 # update for Advanced web:
 - no need to run XAMPP
 - additional requirements:
-    - pip install djangorestframework
-    - pip install django-filter
+    - pip intstall -r requirements.txt
 - implemented url endpoints
     - customer/v1/customers and customer/v1/customers/<id>
         - Methods: GET,POST,PUT, PATCH, DELETE
