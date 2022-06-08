@@ -52,38 +52,32 @@ function DashboardCustomer () {
     //};
 
     return (
-        <div class="container">
-            <div class="row">
-                <div class="col-2">
-                </div>
-                <div class="col-10">
-                <h2>Dashboard Customer</h2>
-                <table class="table table-bordered table-hover">
-                    <thead class="bg-info text-white">
+        <div>
+            <h2>Dashboard Customer</h2>
+            <table class="table table-bordered table-hover">
+                <thead class="bg-info text-white">
+                    <tr>
+                    <th>ID</th>
+                        <th>Date Registered</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { data.map((d) => (
                         <tr>
-                        <th>ID</th>
-                            <th>Date Registered</th>
-                            <th>FirstName</th>
-                            <th>LastName</th>
-                            <th>Email</th>
-                            <th>Contact</th>
-                            <th>Edit</th>
+                            { Object.entries(d).map(([key,value]) =>
+                                <td>{ key!=='edit' ? value : <button class="btn btn-warning">Edit</button> }</td>
+                            ) }
                         </tr>
-                    </thead>
-                    <tbody>
-                        { data.map((d) => (
-                            <tr>
-                                { Object.entries(d).map(([key,value]) =>
-                                    <td>{ key!=='edit' ? value : <button class="btn btn-warning">Edit</button> }</td>
-                                ) }
-                            </tr>
-                        )) }
-                    </tbody>
-                </table> 
+                    )) }
+                </tbody>
+            </table> 
 
-                <button class="btn btn-primary">Add Customer</button>
-                </div>
-            </div>
+            <button class="btn btn-primary">Add Customer</button>
         </div>
     
     );
