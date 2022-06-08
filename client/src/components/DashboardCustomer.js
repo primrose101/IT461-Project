@@ -1,56 +1,37 @@
 import React, { useEffect, useState } from "react";
 import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import Aside from "./Aside";
+import axios from "axios";
 
 function DashboardCustomer () {
 
-    const [data, setData] = useState([
-        {
-            'id': 'a', 
-            'date': 'b', 
-            'firstname': 'c',
-            'lastname': 'd',
-            'email': 'e',
-            'contact': 'e',
-            'edit': 'f',
-    
-        },
-        {
-            'id': 'a', 
-            'date': 'b', 
-            'firstname': 'c',
-            'lastname': 'd',
-            'email': 'e',
-            'contact': 'e',
-            'edit': 'f',
-        }
-    ]);
+    const [data, setData] = useState({
+        'next': null,
+        'previous': null,
+        'results':[]
+    });
 
-    const [url, setUrl] = useState('/nowhere');
+    const [url, setUrl] = useState('http://localhost:8000/customer/v1/customers');
     const getData = async (url, options) => {
         setUrl(url);
         try {
-            const response = await fetch(url, options);
+            const response = await axios.get(url, options);
+            console.log(response.data);
             setData(response.data);
         } catch (err) {
             console.error(err);
         }
     }
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     getData(url, {
-    //         signal: controller.signal
-    //     });
-    //     return () => {
-    //         controller.abort();
-    //     }
-    // }, []);
-
-   // const style1 = {
-     //   'margin-left': 'auto',
-      //  'margin-right': 'auto'
-    //};
+    useEffect(() => {
+        const controller = new AbortController();
+        getData(url, {
+            signal: controller.signal,
+        });
+        return () => {
+            controller.abort();
+        }
+    }, []);
 
     return (
         <div className="row">
@@ -62,7 +43,7 @@ function DashboardCustomer () {
                 <table class="table table-bordered table-hover">
                     <thead class="bg-primary text-white">
                         <tr>
-                        <th>ID</th>
+                            <th>ID</th>
                             <th>Date Registered</th>
                             <th>FirstName</th>
                             <th>LastName</th>
@@ -71,16 +52,29 @@ function DashboardCustomer () {
                             <th>Edit</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        { data.map((d) => (
+                    <tbody className="text-center">
+                        { data['results'].map((d) => (
                             <tr>
-                                { Object.entries(d).map(([key,value]) =>
-                                    <td>{ key!=='edit' ? value : <button class="btn btn-warning">Edit</button> }</td>
-                                ) }
+                                <td>{ d['id'] }</td>
+                                <td>{ d['dateregistered'] }</td>
+                                <td>{ d['firstname'] }</td>
+                                <td>{ d['lastname'] }</td>
+                                <td>{ d['email'] }</td>
+                                <td>{ d['contact'] }</td>
+                                <td>
+                                    <button className="btn btn-warning btn-sm">Edit</button>
+                                    <span> </span>
+                                    <button className="btn btn-danger btn-sm">Delete</button>
+                                </td>
                             </tr>
                         )) }
                     </tbody>
                 </table> 
+
+                <div align="right">
+                    { data['previous']!==null && <a className="btn btn-link" href={ data['previous'] }>Previous</a> }
+                    { data['next']!==null && <a className="btn btn-link" href={ data['next'] }>Next</a> }
+                </div>
 
                 <button class="btn btn-primary">Add Customer</button>
             </div>
