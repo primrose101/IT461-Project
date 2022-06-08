@@ -4,12 +4,12 @@ content-Type: application/json
 {
     "id":""
 }
-
+###
 POST http://127.0.0.1:8000/customer/v1/customers HTTP/1.1
 content-Type: application/json
 
 {
-     "id": 2,
+     "id": "",
       "firstname": "Mark",
       "lastname": "Simbajon",
       "dateregistered": "2022-06-08",

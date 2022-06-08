@@ -3,6 +3,7 @@ import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import Aside from "./Aside";
 import axios from "axios";
 import { Form, Button, Container, Alert ,Modal} from 'react-bootstrap';
+import CustomerAdd from "./CustomerAdd";
 
 function DashboardCustomer () {
 
@@ -35,45 +36,6 @@ function DashboardCustomer () {
             controller.abort();
         }
     }, []);
-
-
-    const [showModal, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    const [enteredId, setId] = useState('');
-    const [enteredName, setName] = useState('');
-    const [enteredRole, setRole] = useState('');
-  
-  
-    const IdChangeHandler = (event) => {
-      setId(event.target.value);
-    };
-  
-    const nameChangeHandler = (event) => {
-      setName(event.target.value);
-    };
-  
-    const roleChangeHandler = (event) => {
-      setRole(event.target.value);
-    };
-  
-  
-    const submitHandler = (event) => {
-      event.preventDefault();
-  
-      //reset the values of input fields
-          setId('');
-          setName('');
-          setRole('');
-  
-      return alert('Entered Values are: '+enteredId+','+ enteredName +','+enteredRole)
-  
-  
-    };
-
-
 
   
     return (
@@ -118,38 +80,7 @@ function DashboardCustomer () {
                     { data['previous']!==null && <a className="btn btn-link" href={ data['previous'] }>Previous</a> }
                     { data['next']!==null && <a className="btn btn-link" href={ data['next'] }>Next</a> }
                 </div>
-
-                <button class="btn btn-primary"  onClick={handleShow} >Add Customer</button>
-                <Modal show={showModal} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body> <Alert variant='primary'>
-                    <Container>
-                    <Form onSubmit={submitHandler}>
-                    <Form.Group  controlId="form.id">
-                            <Form.Label>Id</Form.Label>
-                            <Form.Control type="number" value={enteredId} onChange={IdChangeHandler}placeholder="Enter Id" required/>
-                        </Form.Group>
-                        <Form.Group controlId="form.Name">
-                            <Form.Label>User Name</Form.Label>
-                            <Form.Control type="text" value={enteredName} onChange={nameChangeHandler} placeholder="Enter User Name" required/>
-                        </Form.Group>
-                        <Form.Group  controlId="form.Role">
-                            <Form.Label>Role</Form.Label>
-                            <Form.Control type="text" value={enteredRole} onChange={roleChangeHandler} placeholder="Enter Role" required/>
-                        </Form.Group>
-                        <Button type='submit'>Add Employee</Button>
-                    </Form>
-                    </Container>
-                    </Alert>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                        Close
-                        </Button>
-                    </Modal.Footer>
-                    </Modal>
+                <CustomerAdd/>
                         
             </div>
         </div>
