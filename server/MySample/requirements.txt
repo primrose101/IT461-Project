@@ -3,4 +3,4 @@ django-filter
 django-cors-headers
 jsonschema
 numpy
-pillows
+pillow

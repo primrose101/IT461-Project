@@ -84,7 +84,6 @@ function DashboardProduct () {
                     { data['previous']!==null && <a className="btn btn-link" href={ data['previous'] }>Previous</a> }
                     { data['next']!==null && <a className="btn btn-link" href={ data['next'] }>Next</a> }
                 </div>
-
                 <button className="btn btn-primary">Add Product</button>
             </div>
         </div>

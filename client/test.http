@@ -1,0 +1,24 @@
+GET http://127.0.0.1:8000/customer/v1/customers HTTP/1.1
+content-Type: application/json
+
+{
+    "id":""
+}
+
+POST http://127.0.0.1:8000/customer/v1/customers HTTP/1.1
+content-Type: application/json
+
+{
+     "id": 2,
+      "firstname": "Mark",
+      "lastname": "Simbajon",
+      "dateregistered": "2022-06-08",
+      "address": "Nowhere",
+      "birthdate": "2022-06-08",
+      "birthplace": "Nowhere",
+      "isDeleted": false,
+      "email": "mark.desierto@cit.edu",
+      "username": "mark Sai",
+      "password": "simdesierto",
+      "contact": "09562206467"
+}
