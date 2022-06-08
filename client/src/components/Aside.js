@@ -1,5 +1,5 @@
 import React from "react";
-import './bootstrap-4.0.0-dist/css/bootstrap.min.css'
+import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 
 function Aside() {
     return (

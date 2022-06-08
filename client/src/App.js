@@ -1,11 +1,11 @@
 // import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import DashboardProduct from './DashboardProduct';
+import DashboardProduct from './components/DashboardProduct';
 import DashboardCustomer from './components/DashboardCustomer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Nav from './Nav';
-import Home from './Home';
+import Nav from './components/Nav';
+import Home from './components/Home';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Aside from "./Aside";
-import './bootstrap-4.0.0-dist/css/bootstrap.min.css'
+import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import axios from "axios";
 
 function DashboardProduct () {
