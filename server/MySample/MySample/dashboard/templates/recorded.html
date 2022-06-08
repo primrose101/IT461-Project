@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tech Store</title>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+		
+		<link rel="stylesheet" href="{% static 'css/product.css' %}">
+        <link rel="stylesheet" href="{% static 'css/back.css' %}">
+		<link rel = "stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<!--<script type="text/javascript" src = "bootstrap-4.4.1-dist\js\bootstrap.min.js"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src = "{% static 'js/form-validation.js' %}"></script>
+		<script type="text/javascript" src = "{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    
+        <style> 
+            body {
+                background: linear-gradient(rgba(0, 35, 50, 0.5), rgba(0,0,50,0.5)), url("{% static 'css/product.jpg' %}");
+                background-size: auto; 
+                background-position: center;
+            }
+
+            .col-lg-7 {
+                background: rgba(10, 241, 37, 0.252);
+                border-radius: 25px;
+                padding: 50px;
+                width: 100%;
+                /* transform: translate(-50%, -50%); */
+            }   
+        </style>
+
+	</head>
+	<body>
+		
+			<!--menu-->
+			<!--
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			  	<a class="navbar-brand" href="#">BOOKing</a>
+			  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" 			aria-label="Toggle navigation">
+			    	<span class="navbar-toggler-icon"></span>
+			  	</button>
+
+			  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    	<ul class="navbar-nav mr-auto">
+			      		<li class="nav-item">
+			        		<a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+			      		</li>
+			      		<li class="nav-item">
+			        		<a class="nav-link" href="booking.html">Rent</a>
+			      		</li>
+			      		<li class="nav-item active">
+			        		<a class="nav-link" href="rent_out.html">Rent-out</a>
+                        </li>
+                        <li class="nav-item">
+			        		<a class="nav-link" href="donate.html">Donate</a>
+			      		</li>
+			      		<li class="nav-item">
+			        		<a class="nav-link" href="#">Manage Rentals</a>
+			      		</li>
+			      		<li class="nav-item">
+			        		<a class="nav-link" href="#">Cart</a>
+			      		</li>
+			      		
+			    	</ul>
+			    	<form class="form-inline my-2 my-lg-0">
+			      		<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			    	</form>
+			  	</div>
+			</nav>
+            -->
+            <header>
+		    	
+            </header>
+            <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+            <div class="d-flex justify-content-end align-items-end container" style="color:white; text-align: center;">
+            <div class="col-lg-7">
+				<div class="container" >
+				  	<div class="pb-5 text-center">
+				    	<!--<img class="d-block mx-auto" src="Bking.jpg" alt="" width="30%" height="30%">-->
+				    	<h1>Item Recorded Successfully</h1>
+				    	<!--<p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>-->
+				 	</div>
+				
+                    <img src="{% static 'css/check.png' %}" alt="recorded image" width="200" height="200">
+                    
+                    
+                </div>
+                <a class="btn btn-warning btn-lg " href="Prim/index.html" style="float:right;margin-left: 15px;" role="button">Home</a>
+                
+                <a class="btn btn-warning btn-lg " href="product.html" style="float:right;" role="button">Again</a>
+			</div>
+            </div>
+
+		  	<footer>
+		    	
+		  	</footer>
+		
+		
+	</body>
+
+<html>

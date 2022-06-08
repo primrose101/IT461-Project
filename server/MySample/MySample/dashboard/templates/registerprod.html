@@ -1,0 +1,397 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Product Registration</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+      
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="50X50" href="{% static 'css/logoTS.png' %}">
+    
+
+    <!-- Custom CSS for UI-->
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+    
+    <!-- form validation -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src = "{% static 'js/form-validation.js' %}"></script>
+    <script type="text/javascript" src = "{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+    
+        <style> 
+
+            .col-lg-7 {
+                background: rgba(233, 234, 236, 0.537);
+                border-radius: 25px;
+                padding: 30px;
+                width: 50%;
+                /* transform: translate(-50%, -50%); */
+            }   
+        </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin6">
+            <nav class="navbar top-navbar navbar-expand-md">
+                <div class="navbar-header" data-logobg="skin6">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
+                            class="ti-menu ti-close"></i></a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <div class="navbar-brand">
+                        <!-- Logo icon -->
+                        <a href="{% url 'customer:index_view' %}">
+                            <b class="logo-icon">
+                                <!-- Dark Logo icon -->
+                                <img src="{% static 'css/logoTS.png' %}" alt="homepage" class="dark-logo" width ="60px" height="65"/>
+                                
+                            </b>
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span class="logo-text">
+                                <!-- dark Logo text -->
+                                <img src="{% static 'css/text-logoTS.png' %}" alt="homepage" class="dark-logo" width ="150px" height="80" style="margin-left: 0px; padding: 0px"/>
+                                
+                            </span>
+                        </a>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                        data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i
+                            class="ti-more"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar" data-sidebarbg="skin6">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                    class="hide-menu">Dashboard </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="{% url 'dashboard:customer' %}" class="sidebar-link"><span
+                                            class="hide-menu"> Customer
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{% url 'dashboard:product_view' %}" class="sidebar-link"><span
+                                            class="hide-menu"> Product
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="list-divider"></li>
+                        
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            
+            
+            <!--</div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                
+                <!-- multi-column ordering -->
+                
+          <div class="d-flex justify-content-center align-items-center container">
+            <div class="col-lg-7">
+                <div class="container" >
+                            <!--<a href="product.html" class="previous round">&#8249;</a>-->
+                    <div class="pb-4 text-center">
+                                
+                      <!--<img class="d-block mx-auto" src="Bking.jpg" alt="" width="30%" height="30%">-->
+                      <h2>PRODUCT REGISTRATION</h2>
+                      <!--<p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>-->
+                  </div>
+                
+                  
+                    <div class="col-md-14 order-md-1">
+                        <h5 class="mb-3">Product Information</h5>
+                            <form class="needs-validation"  id = "form1" action="" method="POST" autocomplete="off" enctype="multipart/form-data"> 
+                            {% csrf_token %}
+                                <div class="col-md-4 mb-3">
+                                        <label for="">Category</label>
+                                                    <Select class="form-control" id="id-category" name="category">
+                                                        
+                                                        <option> Smartphones </option>
+                                                        <option> Laptops </option>
+                                                        <option> Smart Devices </option>
+                                                        <option> TV  </option>
+                                                        <option> Sounds </option>
+                                                        <option> Accesories </option>
+                                                        
+
+                                                    </Select>
+                                </div>
+                                        
+                                    
+                                    <hr/> 
+                                    <div class="row">
+                                      <div class="col-md-5 mb-3">
+                                          <label>Name</label>
+                                          <input type="text" class="form-control" id="id-name" name="name" placeholder=""  required 
+                                                data-bv-notempty="true" 
+                                                data-bv-notempty-message="Name is required">
+                                      </div>
+                                      <div class="col-md-5 mb-3">
+                                          <label for="">Brand</label>
+                                          <input type="text" class="form-control" id="id-brand" name="brand" placeholder=""  required       
+                                                  data-bv-notempty="true"
+                                                  data-bv-notempty-message="Brand is required">
+                                                    
+                                      </div>
+                          
+                                     </div>
+                                    <div class="row">
+                                        
+                                        
+                                        <div class="col-md-4 mb-3">
+                                              <label for="">Color</label>
+                                          <input type="text" class="form-control" id="id-color" name="color" placeholder=""  required data-bv-notempty="true"
+                                          data-bv-notempty-message="Color is required"
+
+                                          data-bv-regexp="true"
+                                          data-bv-regexp-regexp="^[a-zA-Z]+$"
+                                          data-bv-regexp-message="Input valid Color">
+                                          
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                              <label for="">Size/Dimension</label>
+                                          <input type="text" class="form-control" id="id-size" name="size" placeholder=""  required data-bv-notempty="true"
+                                          data-bv-notempty-message="Size is required">
+                                          
+                                        </div>
+                                    </div>
+                                
+                                    <div class="row">
+                                            
+                          <div class="col-md-3 mb-3">
+                            <label for="">No. of Stocks</label>
+                            <input type="text" class="form-control" id="id-stocks" name="stocks" placeholder=""  required    
+                                              data-bv-notempty="true"
+                                              data-bv-notempty-message="This is required"
+
+                                              data-bv-regexp="true"
+                                              data-bv-regexp-regexp="^[0-9]+$"
+                                              data-bv-regexp-message="must be numbers"
+
+                                              data-bv-stringlength="true" 
+                                              data-bv-stringlength-min="2"
+                                              data-bv-stringlength-max="2" 
+                                              data-bv-stringlength-message="receives only 10-99">
+                            
+                                            </div>
+                                            <div class="col-md-5 mb-3">
+                                                <label for="">Price</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                            <span class="input-group-text">Php</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="id-price" name="price" placeholder=""  required data-bv-notempty="true"
+                                                    data-bv-notempty-message="Price is required"
+                                                    
+                                                    data-bv-regexp="true"
+                                                    data-bv-regexp-regexp="^([1-9]\d*|0)(\.\d{1,2})?$"
+                                                    data-bv-regexp-message="price not valid">
+                                                   
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-8">
+                                              <label for="">Description:</label>
+                                              <textarea class="form-control" rows="4" id="id-description" name="description" 
+                                              data-bv-notempty="true"
+                                              data-bv-notempty-message="Brand is required"
+
+                                              data-bv-stringlength="true" 
+                                              data-bv-stringlength-max="200" 
+                                              data-bv-stringlength-message="The description must be less than 200 characters" required></textarea>
+                                              
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-md-3 mb-1">
+                                            <label for="">Upload Images:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6 mb-5">
+                                            
+                                            <img id="image" src="#" alt="" />
+                                              <input
+                                                type="file"
+                                                onchange="readURL1(this);"
+                                                class="form-control"
+                                                id="image"
+                                                name="image"
+                                                required
+                                              />
+                                        </div>
+                                        
+                                    </div>
+                                    </br>
+                                    <button type="submit" class="btn btn-warning btn-lg " id="id_registration"  data-target="" style="float:right;" data-toggle="">Submit Record</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+        </div>      
+
+
+                    
+                            
+                
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center text-muted">
+                
+                
+                <p style="margin-top: 50px">All Rights Reserved by Techmart.  </p>
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#form1').bootstrapValidator();
+        });
+    </script>
+
+    <!-- image -->
+    <script>
+      function readURL1(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          // alert("INSIDE!");
+          reader.onload = function (e) {
+            $('#image').attr('src', e.target.result).width(160).height(160);
+          };
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>
+
+
+    <!-- Scripts for web UI-->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    
+     
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <!--<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    
+    <!-- apps -->
+    <!-- apps -->
+    <script src="{% static 'js/app-style-switcher.js' %}"></script>
+    <script src="{% static 'js/feather.min.js' %}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'js/perfect-scrollbar.jquery.min.js' %}"></script>
+    <script src="{% static 'js/sparkline.js' %}"></script>
+    <!--Wave Effects -->
+    <!-- themejs -->
+    <!--Menu sidebar -->
+    <script src="{% static 'js/sidebarmenu.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    
+    
+</body>
+
+</html>

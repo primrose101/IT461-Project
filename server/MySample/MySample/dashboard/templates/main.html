@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Techmart</title>
+        <!-- Favicon icon -->
+    	<link rel="icon" type="image/png" sizes="50X50" href="{% static 'css/logoTS.png' %}">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+        <!-- CSS only -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+		
+     </head>
+     <body>
+     
+        <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+		  <a class="navbar-brand" href="{% url 'dashboard:customer' %}">TechMart
+      <img src="{% static 'css/logoTS.png' %}" alt="homepage" class="dark-logo" style="margin-left: -85px;" width ="60px" height="65"/>
+      <img src="{% static 'css/text-logoTS.png' %}" alt="homepage" class="dark-logo" width ="150px" height="80" style="margin-left: 0px; padding: 0px;"/>
+      </a>
+    </nav>
+
+		<div class="page-breadcrumb">
+                
+                <div class='navbar-nav float-right mr-auto ml-3 pl-1 bg-color--gray'>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert" style="text-align: center">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message|safe }}
+                        </div>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+
+         <div class="container">
+                <br>
+                {% block content %}
+                	
+                {% endblock content %}
+         </div>
+
+
+     	<!-- JS, Popper.js, and jQuery -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+     </body>
+</html>
