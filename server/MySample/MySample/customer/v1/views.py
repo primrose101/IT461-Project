@@ -10,7 +10,7 @@ from rest_framework import status as request_status
 from rest_framework.authtoken.models import Token
 from dashboard.models import Customer
 from rest_framework import authentication, permissions
-from rest_framework.pagination import LimitOffsetPagination
+from customer.v1.pagination import HeaderLimitOffsetPagination
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
  
@@ -19,7 +19,7 @@ class CustomersView(GenericAPIView):
     serializer_class = serializers.CustomersSerializer
     # authentication_classes = [authentication.TokenAuthentication]
     queryset = Customer.objects.all()
-    pagination_class = LimitOffsetPagination
+    pagination_class = HeaderLimitOffsetPagination
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     filterset_fields={
         'isDeleted':['exact','iexact'],

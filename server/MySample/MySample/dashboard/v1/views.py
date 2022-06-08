@@ -6,7 +6,7 @@ from dashboard.v1 import serializers
 from rest_framework import status as request_status
 from rest_framework.authtoken.models import Token
 from rest_framework import authentication, permissions
-from rest_framework.pagination import LimitOffsetPagination
+from customer.v1.pagination import HeaderLimitOffsetPagination
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.parsers import MultiPartParser,FormParser,JSONParser
@@ -16,7 +16,7 @@ class ProductsView(GenericAPIView):
     serializer_class = serializers.ProductsSerializer
     # authentication_classes = [authentication.TokenAuthentication]
     queryset = Product.objects.all()
-    pagination_class = LimitOffsetPagination
+    pagination_class = HeaderLimitOffsetPagination
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     parser_classes = (MultiPartParser, FormParser, JSONParser)
     filterset_fields={
@@ -182,7 +182,7 @@ class OrdersView(GenericAPIView):
     serializer_class = serializers.OrdersSerializer
     # authentication_classes = [authentication.TokenAuthentication]
     queryset = OrderItems.objects.all()
-    pagination_class = LimitOffsetPagination
+    pagination_class = HeaderLimitOffsetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields={
         'product':['exact'],
