@@ -1,6 +1,0 @@
-djangorestframework
-django-filter
-django-cors-headers
-jsonschema
-numpy
-pillow
