@@ -36,7 +36,7 @@ function DashboardCustomer () {
     return (
         <div className="row">
             <div className="col-3">
-                <Aside/>
+                <Aside active={"customers"}/>
             </div>
             <div className="col-9">
                 <h2>Dashboard Customer</h2>

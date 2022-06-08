@@ -36,7 +36,7 @@ function DashboardBuy () {
     return (
         <div className="row">
             <div className="col-3">
-                <Aside/>
+                <Aside active={"buy"}/>
             </div>
             <div className="col-9">
                 <h2>Dashboard Products</h2>
