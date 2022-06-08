@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {helmet} from "react-helmet"
+import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 
 function DashboardCustomer () {
 
@@ -7,26 +8,21 @@ function DashboardCustomer () {
         {
             'id': 'a', 
             'date': 'b', 
-            'category': 'c',
-            'brand': 'd',
-            'name': 'e',
-            'size': 'f',
-            'price': 'g',
-            'stocks': 'h',
-            'photos': 'i',
-            'edit': 'j'
+            'firstname': 'c',
+            'lastname': 'd',
+            'email': 'e',
+            'contact': 'e',
+            'edit': 'f',
+    
         },
         {
-            'id': 'h', 
-            'date': 'i', 
-            'category': 'j',
-            'brand': 'k',
-            'name': 'l',
-            'size': 'm',
-            'price': 'n',
-            'stocks': 'o',
-            'photos': 'p',
-            'edit': 'q'
+            'id': 'a', 
+            'date': 'b', 
+            'firstname': 'c',
+            'lastname': 'd',
+            'email': 'e',
+            'contact': 'e',
+            'edit': 'f',
         }
     ]);
 
@@ -57,7 +53,39 @@ function DashboardCustomer () {
     //};
 
     return (
-        <div><h1>Hello World</h1></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-10">
+                <h2>Dashboard Customer</h2>
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-info text-white">
+                        <tr>
+                        <th>ID</th>
+                            <th>Date Registered</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { data.map((d) => (
+                            <tr>
+                                { Object.entries(d).map(([key,value]) =>
+                                    <td>{ key!=='edit' ? value : <button class="btn btn-warning">Edit</button> }</td>
+                                ) }
+                            </tr>
+                        )) }
+                    </tbody>
+                </table> 
+
+                <button class="btn btn-primary">Add Customer</button>
+                </div>
+            </div>
+        </div>
     
     );
 }

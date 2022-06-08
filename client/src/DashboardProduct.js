@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Aside from "./Aside";
-import './bootstrap-4.0.0-dist/css/bootstrap.min.css'
 
 function DashboardProduct () {
 
@@ -56,7 +55,6 @@ function DashboardProduct () {
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <Aside />
                 </div>
                 <div class="col-10">
                 <h2>Dashboard Products</h2>
