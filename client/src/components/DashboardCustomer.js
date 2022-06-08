@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
+import Aside from "./Aside";
 
 function DashboardCustomer () {
 
@@ -52,32 +53,37 @@ function DashboardCustomer () {
     //};
 
     return (
-        <div>
-            <h2>Dashboard Customer</h2>
-            <table class="table table-bordered table-hover">
-                <thead class="bg-info text-white">
-                    <tr>
-                    <th>ID</th>
-                        <th>Date Registered</th>
-                        <th>FirstName</th>
-                        <th>LastName</th>
-                        <th>Email</th>
-                        <th>Contact</th>
-                        <th>Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { data.map((d) => (
+        <div className="row">
+            <div className="col-3">
+                <Aside/>
+            </div>
+            <div className="col-9">
+                <h2>Dashboard Customer</h2>
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-primary text-white">
                         <tr>
-                            { Object.entries(d).map(([key,value]) =>
-                                <td>{ key!=='edit' ? value : <button class="btn btn-warning">Edit</button> }</td>
-                            ) }
+                        <th>ID</th>
+                            <th>Date Registered</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                            <th>Edit</th>
                         </tr>
-                    )) }
-                </tbody>
-            </table> 
+                    </thead>
+                    <tbody>
+                        { data.map((d) => (
+                            <tr>
+                                { Object.entries(d).map(([key,value]) =>
+                                    <td>{ key!=='edit' ? value : <button class="btn btn-warning">Edit</button> }</td>
+                                ) }
+                            </tr>
+                        )) }
+                    </tbody>
+                </table> 
 
-            <button class="btn btn-primary">Add Customer</button>
+                <button class="btn btn-primary">Add Customer</button>
+            </div>
         </div>
     
     );

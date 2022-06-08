@@ -7,11 +7,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import DashboardBuy from './components/DashboardBuy';
+import Aside from './components/Aside';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <Nav/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard/product" element={<DashboardProduct/>}/>

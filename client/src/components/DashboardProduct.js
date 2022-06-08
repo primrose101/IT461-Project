@@ -35,53 +35,58 @@ function DashboardProduct () {
     }, []);
 
     return (
-        <div>
-            <h2>Dashboard Products</h2>
-            <table className="table table-bordered table-hover">
-                <thead className="bg-info text-white">
-                    <tr>
-                        <th>ID no.</th>
-                        <th>Datestamp</th>
-                        <th>Category</th>
-                        <th>Brand</th>
-                        <th>Name</th>
-                        <th>Size</th>
-                        <th>Price</th>
-                        <th>Stocks</th>
-                        <th>Photos</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody className="text-center">
-                    { data['results'].map((d) => (
-                        <tr>
-                            <td>{ d['id'] }</td>
-                            <td>{ d['datereg'] }</td>
-                            <td>{ d['category'] }</td>
-                            <td>{ d['brand'] }</td>
-                            <td>{ d['name'] }</td>
-                            <td>{ d['size'] }</td>
-                            <td>{ d['price'] }</td>
-                            <td>{ d['stocks'] }</td>
-                            <td>
-                                <img src={ d['image'] } alt={ d['id'] } width="auto" height="80px" />
-                            </td>
-                            <td>
-                                <button className="btn btn-warning btn-sm">Edit</button>
-                                <span> </span>
-                                <button className="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                    )) }
-                </tbody>
-            </table> 
-
-            <div align="right">
-                { data['previous']!==null && <a className="btn btn-link" href={ data['previous'] }>Previous</a> }
-                { data['next']!==null && <a className="btn btn-link" href={ data['next'] }>Next</a> }
+        <div className="row">
+            <div className="col-3">
+                <Aside/>
             </div>
+            <div col-9>
+                <h2>Dashboard Products</h2>
+                <table className="table table-bordered table-hover">
+                    <thead className="bg-primary text-white">
+                        <tr>
+                            <th>ID no.</th>
+                            <th>Datestamp</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Stocks</th>
+                            <th>Photos</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-center">
+                        { data['results'].map((d) => (
+                            <tr>
+                                <td>{ d['id'] }</td>
+                                <td>{ d['datereg'] }</td>
+                                <td>{ d['category'] }</td>
+                                <td>{ d['brand'] }</td>
+                                <td>{ d['name'] }</td>
+                                <td>{ d['size'] }</td>
+                                <td>{ d['price'] }</td>
+                                <td>{ d['stocks'] }</td>
+                                <td>
+                                    <img src={ d['image'] } alt={ d['id'] } width="auto" height="80px" />
+                                </td>
+                                <td>
+                                    <button className="btn btn-warning btn-sm">Edit</button>
+                                    <span> </span>
+                                    <button className="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
+                        )) }
+                    </tbody>
+                </table> 
 
-            <button className="btn btn-primary">Add Product</button>
+                <div align="right">
+                    { data['previous']!==null && <a className="btn btn-link" href={ data['previous'] }>Previous</a> }
+                    { data['next']!==null && <a className="btn btn-link" href={ data['next'] }>Next</a> }
+                </div>
+
+                <button className="btn btn-primary">Add Product</button>
+            </div>
         </div>
     );
 }
