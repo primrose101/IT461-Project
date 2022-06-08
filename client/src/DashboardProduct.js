@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Aside from "./Aside";
 import './bootstrap-4.0.0-dist/css/bootstrap.min.css'
+import axios from "axios";
 
 function DashboardProduct () {
 
@@ -31,26 +32,32 @@ function DashboardProduct () {
         }
     ]);
 
-    const [url, setUrl] = useState('/nowhere');
+    const [url, setUrl] = useState('dashboard/v1/products');
     const getData = async (url, options) => {
         setUrl(url);
         try {
-            const response = await fetch(url, options);
-            setData(response.data);
+            console.log("was here");
+            const response = await axios.get(url, options);
+            console.log(response.data)
+            // setData(response.data);
         } catch (err) {
             console.error(err);
         }
     }
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     getData(url, {
-    //         signal: controller.signal
-    //     });
-    //     return () => {
-    //         controller.abort();
-    //     }
-    // }, []);
+    useEffect(() => {
+        const controller = new AbortController();
+        getData(url, {
+            signal: controller.signal,
+            crossDomain: true,
+            headers: {
+            	"Access-Control-Allow-Origin": "*"
+            }
+        });
+        return () => {
+            controller.abort();
+        }
+    }, []);
 
     return (
         <div class="container">
