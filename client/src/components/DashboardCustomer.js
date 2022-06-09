@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import Aside from "./Aside";
 import axios from "axios";
-import { Form, Button, Container, Alert ,Modal} from 'react-bootstrap';
 import CustomerAdd from "./CustomerAdd";
 
 function DashboardCustomer () {

@@ -2,7 +2,7 @@ GET http://127.0.0.1:8000/customer/v1/customers HTTP/1.1
 content-Type: application/json
 
 {
-    "id":""
+    "id":"13"
 }
 ###
 POST http://127.0.0.1:8000/customer/v1/customers HTTP/1.1
@@ -22,3 +22,12 @@ content-Type: application/json
       "password": "simdesierto",
       "contact": "09562206467"
 }
+
+###
+GET  http://127.0.0.1:8000/dashboard/v1/products HTTP/1.1
+content-Type: application/json
+
+{
+    
+}
+

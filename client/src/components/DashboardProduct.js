@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Aside from "./Aside";
 import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import axios from "axios";
+import ProductAadd from "./ProductAdd";
 
 function DashboardProduct () {
-
     const [data, setData] = useState({
         'next': null,
         'previous': null,
@@ -83,10 +83,9 @@ function DashboardProduct () {
                     { data['previous']!==null && <a className="btn btn-link" href={ data['previous'] }>Previous</a> }
                     { data['next']!==null && <a className="btn btn-link" href={ data['next'] }>Next</a> }
                 </div>
-                <button className="btn btn-primary">Add Product</button>
+                <ProductAadd/>
             </div>
         </div>
     );
 }
-
 export default DashboardProduct;
