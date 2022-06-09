@@ -39,7 +39,7 @@ other prerequisites:
     ]
 - Token is integrated for every method
     - place token in request header
-    - see [customer.http](MySample/MySample/customer/customer.http) and [dashboard.http](MySample/MySample/customer/dashboard.http) for examples
+    - see [customer.http](MySample/MySample/customer/customer.http) and [dashboard.http](MySample/MySample/dashboard/dashboard.http) for examples
 
 ## Filtering and Searching with URL
 - Filtering Example (http://127.0.0.1:8000/customer/v1/customers/?lastname=Cruz&address=Cebu City&username__contains=123)
