@@ -31,7 +31,6 @@ function CustomerAdd () {
 
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
-    const [dateregistered, setDateRegistered] = useState('');
     const [address, setAddress] = useState('');
     const [birthdate, setBirthDate] = useState('');
     const [birthplace, setBirthPlace] = useState('');
@@ -46,10 +45,6 @@ function CustomerAdd () {
   
     const lastNameHandler = (event) => {
       setLastName(event.target.value);
-    };
-  
-    const dateRegisteredHandler = (event) => {
-      setDateRegistered(event.target.value);
     };
     
     const addressHandler = (event) => {
@@ -83,55 +78,111 @@ function CustomerAdd () {
     const submitHandler = (event) => {
       event.preventDefault();
 
-      let date_create = moment().format("YYYY-MM-DD")
-      //reset the values of input fields
-      let form_data = new FormData();
+        let date_create = moment().format("YYYY-MM-DD")
+        //reset the values of input fields
+        /*
+        let form_data = new FormData();
+        form_data.append("id",'');
+        form_data.append("firstname", firstname);
+        form_data.append("lastname", lastname);
+        form_data.append("dateregistered", dateregistered);
+        form_data.append("address", address);
+        form_data.append("birthdate", birthdate);
+        form_data.append("birthplace", birthplace);
+        form_data.append("isDeleted", false);
+        form_data.append("email", email);
+        form_data.append("username", username);
+        form_data.append("password", password);
+        form_data.append("contact", contact);
+        for (var key in form_data) {
+            console.log(key, form_data[key]);
+        }
+    
+    const myNewModel = axios.post("http://127.0.0.1:8000/customer/v1/customers", form_data, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            }).then((res) => {
+                return res;
+            }).catch((error) => {
+                return error.response;
+            });
 
-      form_data.append("id",'');
-      form_data.append("firstname", firstname);
-      form_data.append("lastname", lastname);
-      form_data.append("dateregistered", dateregistered);
-      form_data.append("address", address);
-      form_data.append("birthdate", birthdate);
-      form_data.append("birthplace", birthplace);
-      form_data.append("isDeleted", false);
-      form_data.append("email", email);
-      form_data.append("username", username);
-      form_data.append("password", password);
-      form_data.append("contact", contact);
-      for (var key in form_data) {
-        console.log(key, form_data[key]);
-    }
-  
-  const myNewModel = axiosInstance.post("http://127.0.0.1:8000/customer/v1/customers", form_data, {
-              headers: {
-                  "Content-Type": "application/json",
-              },
-          }).then((res) => {
-              return res;
-          }).catch((error) => {
-              return error.response;
-          });
+    */
+    /*
+    const response = axios.post('http://127.0.0.1:8000/customer/v1/customers',
+    JSON.stringify({
+        
+        id:'',
+        firstname:firstname,
+        lastname:lastname,
+        dateregistered:date_create,
+        address:address,
+        birthdate:birthdate,
+        birthplace:birthplace,
+        isDeleted:false,
+        email:email,
+        username:username,
+        password:password,
+        contact:contact
+    }).then(function(results){
+        console.log(results)
+    })
+    );
+        console.log(response)
+        console.log(firstname)
+        console.log(lastname)
+        console.log(date_create)
+        console.log(address)
+        console.log(birthdate)
+        console.log(birthplace)
+        console.log(email)
+        console.log(username)
+        console.log(password)
+        console.log(contact)
+    */
 
 
-      console.log(myNewModel)
+
+
         setFirstName('');
         setLastName('');
         setAddress('');
         setBirthDate('');
         setBirthPlace('');
         setContact('');
-        setDateRegistered('');
         setEmail('');
         setPassword('');
         setUserName('');
 
+        const customer = {
+            id:'',
+            firstname:firstname,
+            lastname:lastname,
+            dateregistered:date_create,
+            address:address,
+            birthdate:birthdate,
+            birthplace:birthplace,
+            isDeleted:false,
+            email:email,
+            username:username,
+            password:password,
+            contact:contact
+          }
 
-        
+        const options = {
+            headers: {"content-type": "application/json"}
+        }
+
+       
+          axios.post('http://127.0.0.1:8000/customer/v1/customers', customer,options)
+            .then(res => {
+              console.log(res);
+              console.log(res.data);
+            })
+            
   
       return alert('Entered Values are: '+firstname+','+lastname +','+birthdate)
-  
-  
     };
     return (
         <div>
@@ -194,5 +245,4 @@ function CustomerAdd () {
                     </div>
     );
 }
-
 export default CustomerAdd;

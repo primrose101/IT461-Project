@@ -81,7 +81,6 @@ function DashboardCustomer () {
                     { data['next']!==null && <a className="btn btn-link" href={ data['next'] }>Next</a> }
                 </div>
                 <CustomerAdd/>
-                        
             </div>
         </div>
     
