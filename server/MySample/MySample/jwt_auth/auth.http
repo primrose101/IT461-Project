@@ -5,15 +5,23 @@ GET {{host}}/v1/auth/token
 Content-Type: application/json
 
 {
-  "username": "mark Sai",
-  "password": "simdesierto"
+  "username": "john.doe",
+  "password": "john"
 }
 
 ### Verify Token
 GET {{host}}/v1/auth/verify
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtYXJrIFNhaSIsImV4cCI6MTY1NDg1NzM0M30.BCDsS4eEXP42E6rf1TfMzXma1JnWfwksZxa5QXJZO78
 Content-Type: application/json
 
-### Customers
-GET {{host}}/customer/v1/customers
-Content-Type: application/json
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NywidXNlcm5hbWUiOiJzdGV2ZS5oYXJ2ZXkiLCJleHAiOjE2NTQ3ODQ5NTl9.vqG5HdSWTkslznE3X07GyosuQQSKBC626XPx2nOfAAU"
+}
+
+# ### Verify Token
+# GET {{host}}/v1/auth/verify
+# Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NywidXNlcm5hbWUiOiJzdGV2ZS5oYXJ2ZXkiLCJleHAiOjE2NTQ3ODQ5NTl9.vqG5HdSWTkslznE3X07GyosuQQSKBC626XPx2nOfAAU
+# Content-Type: application/json
+
+# ### Customers
+# GET {{host}}/customer/v1/customers
+# Content-Type: application/json

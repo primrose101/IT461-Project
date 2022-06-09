@@ -21,7 +21,10 @@ class CreateTokenView(APIView):
 
 class VerifyTokenView(APIView):
   def get(self, request):
-    token = request.headers['Authorization']
+    #token = request.headers['Authorization']
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    token = body['token']
     return Response(JwtToken.verify(token))
 
 class JwtToken:
