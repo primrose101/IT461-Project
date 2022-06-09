@@ -47,7 +47,8 @@ other prerequisites:
    - see [auth.http](MySample/MySample/jwt_auth/auth.http) for example
    ### host/v1/auth/token (Request Token Responses)
    - { "token": "eyJ0..." }
-   ### host/v1/auth/verify (Verfiy Token Responses)
+   - { "error": "Invalid username or password." }
+   ### host/v1/auth/verify (Verify Token Responses)
    - { "valid": "Token is valid." }
    - { "expired": "Token has expired." }
    - { "invalid": "Token is invalid." }
