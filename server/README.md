@@ -42,3 +42,12 @@ other prerequisites:
 - Searching Example (http://127.0.0.1:8000/customer/v1/customers/?search=a)
 - Specific Fields Example (http://127.0.0.1:8000/customer/v1/customers/?fields=username,contact)
 - Combination Example (can be in any order) (http://127.0.0.1:8000/accounts/v1/customers/?fields=username,contact&username=a&address=Cebu City&search=a)
+
+## Requesting and Verifying Tokens
+   - see [auth.http](MySample/MySample/jwt_auth/auth.http) for example
+   ### host/v1/auth/token (Request Token Responses)
+   - { "token": "eyJ0..." }
+   ### host/v1/auth/verify (Verfiy Token Responses)
+   - { "valid": "Token is valid." }
+   - { "expired": "Token has expired." }
+   - { "invalid": "Token is invalid." }
