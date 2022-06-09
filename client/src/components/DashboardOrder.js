@@ -62,8 +62,8 @@ function DashboardOrder () {
                 </table> 
 
                 <div align="right">
-                    { data['previous']!==null && <a className="btn btn-link" href={ data['previous'] }>Previous</a> }
-                    { data['next']!==null && <a className="btn btn-link" href={ data['next'] }>Next</a> }
+                    { data['previous']!==null && <button className="btn btn-link" onClick={() => getData(data['previous']) }>Previous</button> }
+                    { data['next']!==null && <button className="btn btn-link" onClick={() => getData(data['next']) }>Next</button> }
                 </div>
 
                 <button className="btn btn-primary">Add Product</button>
