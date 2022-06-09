@@ -13,6 +13,8 @@ from rest_framework import authentication, permissions
 from customer.v1.pagination import HeaderLimitOffsetPagination
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
+
+from jwt_auth.v1.views import JwtAuthorization
  
 
 class CustomersView(GenericAPIView):
@@ -34,7 +36,12 @@ class CustomersView(GenericAPIView):
     # add later
     # permission_classes = [IsNotAuthenticatedDenyGet]
     
-    def post(self,request,user_id=None,format=None): 
+    def post(self,request,user_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         """No POST for single user query"""
         if user_id != None:
             return Response({'detail':'Method POST not allowed'},status=request_status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -60,7 +67,11 @@ class CustomersView(GenericAPIView):
         return Response(serializer.errors, status=request_status.HTTP_400_BAD_REQUEST)
 
     def get(self,request,user_id=None,format=None):
-        
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         """Get all users. Only allow if user is authenticated."""
         if user_id == None:
             queryset = self.filter_queryset(self.get_queryset())
@@ -98,6 +109,11 @@ class CustomersView(GenericAPIView):
         return exists,  user_queryset
     
     def patch(self,request,user_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         if user_id is None:
             return Response({'detail':'Method PATCH not allowed'},status=request_status.HTTP_405_METHOD_NOT_ALLOWED)
                 
@@ -116,6 +132,11 @@ class CustomersView(GenericAPIView):
         return response
     
     def put(self,request,user_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         data = request.data 
         if type(data) == dict:
             if 'id' not in data:
@@ -142,6 +163,11 @@ class CustomersView(GenericAPIView):
         return response
 
     def delete(self,request,user_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         data = request.data
         if type(data) == dict:
             data['id'] = user_id

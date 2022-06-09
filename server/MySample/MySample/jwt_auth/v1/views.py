@@ -6,6 +6,7 @@ from django.conf import settings
 from customer.v1.serializers import CustomersSerializer
 from dashboard.models import Customer
 import json
+from rest_framework import status as request_status
 
 class CreateTokenView(APIView):
   def get(self, request):
@@ -17,7 +18,7 @@ class CreateTokenView(APIView):
     if token:
       return Response({'token': token})
     else:
-      return Response({'error': 'Invalid username or password.'})
+      return Response({'error': 'Invalid username or password.'}, status=request_status.HTTP_404_NOT_FOUND)
 
 class VerifyTokenView(APIView):
   def get(self, request):
@@ -49,10 +50,10 @@ class JwtToken:
     try:
         decoded_token = jwt.decode(token, JwtToken.__KEY, JwtToken.__ALGO)
     except jwt.ExpiredSignatureError:
-        return {'expired': 'Token has expired.'}
+        return {'detail': 'Token has expired.'}
     except jwt.InvalidTokenError:
-        return {'invalid': 'Token is invalid.'}
-    return {'valid': 'Token is valid.'}
+        return {'detail': 'Token is invalid.'}
+    return {'detail': 'Token is valid.'}
 
   def is_valid(token):
     try:
@@ -60,3 +61,21 @@ class JwtToken:
     except:
         return False
     return True
+
+class JwtAuthorization:
+  def is_authorized(request):
+    authorization = {
+      'is_authorized': False,
+      'detail': "Token is required",
+      'status': request_status.HTTP_401_UNAUTHORIZED
+    }
+
+    if 'Authorization' in request.headers:
+      token = request.headers['Authorization']
+      detail = JwtToken.verify(token)['detail']
+      if JwtToken.is_valid(token):
+        authorization['is_authorized'] = True
+        authorization['status'] = request_status.HTTP_200_OK
+      authorization['detail'] = detail
+    
+    return authorization

@@ -1,0 +1,29 @@
+@host = http://127.0.0.1:8000
+
+### Create Token
+GET {{host}}/v1/auth/token
+Content-Type: application/json
+
+{
+  "username": "john.doe",
+  "password": "john"
+}
+
+### Verify Token
+GET {{host}}/v1/auth/verify
+Content-Type: application/json
+
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huLmRvZSIsImV4cCI6MTY1NDg3NDM5M30.gHSMUOt_w7mNnnDAPr_0MAqXKheTXeWShrnl1WW4agw"
+}
+
+### GET Customers Valid Token
+GET {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huLmRvZSIsImV4cCI6MTY1NDg3NDM5M30.gHSMUOt_w7mNnnDAPr_0MAqXKheTXeWShrnl1WW4agw
+Content-Type: application/json
+
+### GET Customers Invalid/Expired Token
+GET {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NywidXNlcm5hbWUiOiJzdGV2ZS5oYXJ2ZXkiLCJleHAiOjE2NTQ3ODQ5NTl9.vqG5HdSWTkslznE3X07GyosuQQSKBC626XPx2nOfAAU
+Content-Type: application/json
+

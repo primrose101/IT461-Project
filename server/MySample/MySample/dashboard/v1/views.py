@@ -12,6 +12,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.parsers import MultiPartParser,FormParser,JSONParser
 from django.http.request import QueryDict
 
+from jwt_auth.v1.views import JwtAuthorization
+
 class ProductsView(GenericAPIView):
     serializer_class = serializers.ProductsSerializer
     # authentication_classes = [authentication.TokenAuthentication]
@@ -36,6 +38,11 @@ class ProductsView(GenericAPIView):
     # permission_classes = [IsNotAuthenticatedDenyGet]
     
     def post(self,request,product_id=None,format=None): 
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         """No POST for single product query"""
         if product_id != None:
             return Response({'detail':'Method POST not allowed'},status=request_status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -64,6 +71,10 @@ class ProductsView(GenericAPIView):
         return response
     
     def get(self,request,product_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
         
         """Get all users. Only allow if user is authenticated."""
         if product_id == None:
@@ -102,6 +113,11 @@ class ProductsView(GenericAPIView):
         return exists,  product_queryset
     
     def patch(self,request,product_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         if product_id is None:
             return Response({'detail':'Method PATCH not allowed'},status=request_status.HTTP_405_METHOD_NOT_ALLOWED)
                 
@@ -120,6 +136,11 @@ class ProductsView(GenericAPIView):
         return response
     
     def put(self,request,product_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         data = request.data
         if type(request.data) == QueryDict:
             data = data.dict()
@@ -159,6 +180,11 @@ class ProductsView(GenericAPIView):
         return response
 
     def delete(self,request,product_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         data = request.data
         if type(data) == dict:
             if 'id' not in data:
@@ -192,6 +218,11 @@ class OrdersView(GenericAPIView):
     """Create only if user is admin"""
     
     def post(self,request,order_id=None,format=None): 
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         """No POST for single query"""
         if order_id != None:
             return Response({'detail':'Method POST not allowed'},status=request_status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -209,6 +240,10 @@ class OrdersView(GenericAPIView):
         return Response(serializer.errors, status=request_status.HTTP_400_BAD_REQUEST)
 
     def get(self,request,order_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
         
         """Get all users. Only allow if user is authenticated."""
         if order_id == None:
@@ -239,6 +274,11 @@ class OrdersView(GenericAPIView):
         return exists,  order_queryset
 
     def delete(self,request,order_id=None,format=None):
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
+
         data = request.data
         if type(data) == dict:
             data['id'] = order_id

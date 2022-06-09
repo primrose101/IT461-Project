@@ -16,7 +16,7 @@ other prerequisites:
     - python manage.py make migrations
     - python manage.py migrate
 
-# update for Advanced web:
+# Update for Advanced web:
 - no need to run XAMPP
 - additional requirements:
     - pip intstall -r requirements.txt
@@ -37,6 +37,10 @@ other prerequisites:
             "id": "2"
         },
     ]
+- Token is integrated for every method
+    - place token in request header
+    - see [customer.http](MySample/MySample/customer/customer.http) and [dashboard.http](MySample/MySample/customer/dashboard.http) for examples
+
 ## Filtering and Searching with URL
 - Filtering Example (http://127.0.0.1:8000/customer/v1/customers/?lastname=Cruz&address=Cebu City&username__contains=123)
 - Searching Example (http://127.0.0.1:8000/customer/v1/customers/?search=a)
@@ -49,6 +53,6 @@ other prerequisites:
    - { "token": "eyJ0..." }
    - { "error": "Invalid username or password." }
    ### host/v1/auth/verify (Verify Token Responses)
-   - { "valid": "Token is valid." }
-   - { "expired": "Token has expired." }
-   - { "invalid": "Token is invalid." }
+   - { "detail": "Token is valid." }
+   - { "detail": "Token has expired." }
+   - { "detail": "Token is invalid." }
