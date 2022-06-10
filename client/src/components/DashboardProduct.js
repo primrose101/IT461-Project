@@ -33,6 +33,19 @@ function DashboardProduct () {
         }
     }, []);
 
+    const deleteItem = async(options) => {
+        console.log(options)
+        console.log(options['id'])
+        try {
+            const response = await axios.delete('http://127.0.0.1:8000/dashboard/v1/products/' + options['id'], options);
+            console.log(response.data);
+
+            window.location.reload(true)
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <div className="row">
             <div className="col-3">
@@ -72,7 +85,7 @@ function DashboardProduct () {
                                 <td>
                                     <button className="btn btn-warning btn-sm">Edit</button>
                                     <span> </span>
-                                    <button className="btn btn-danger btn-sm">Delete</button>
+                                    <button className="btn btn-danger btn-sm" onClick={() => deleteItem({"id": d["id"]})}>Delete</button>
                                 </td>
                             </tr>
                         )) }
