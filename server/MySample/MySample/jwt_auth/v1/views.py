@@ -18,7 +18,7 @@ class CreateTokenView(APIView):
     if token:
       return Response({'token': token})
     else:
-      return Response({'error': 'Invalid username or password.'}, status=request_status.HTTP_404_NOT_FOUND)
+      return Response({'error': 'Invalid username or password.'}, status=request_status.HTTP_403_FORBIDDEN)
 
 class VerifyTokenView(APIView):
   def post(self, request):

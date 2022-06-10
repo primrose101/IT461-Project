@@ -29,8 +29,23 @@ const Login = () => {
         .then(res => {
             console.log(res);
             console.log(res.data); // {token: 'eyJ0eX...'}
+            alert(res.data['token'])
+        })
+        .catch((error) => {
+            if (error.response) {
+                if (error.response.status == 403) {
+                    alert("Invalid username or password.")
+                }
+                // console.error(error.response.data);
+                // console.error(error.response.status);
+                // console.error(error.response.headers);
+            } else if (error.request) {
+            console.error(error.request);
+            } else {
+            console.error("Error", error.message);
+            }
         });
-    } 
+    }
 
     return (
         <div className="Login">
