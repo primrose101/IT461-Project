@@ -45,6 +45,7 @@ function DashboardCustomer () {
         console.log(options)
         console.log(options['id'])
         try {
+            options.headers = {'Authorization': localStorage.getItem("apple_bees")}
             const response = await axios.delete('http://127.0.0.1:8000/customer/v1/customers/' + options['id'], options);
             console.log(response.data);
 
