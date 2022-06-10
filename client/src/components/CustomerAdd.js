@@ -106,18 +106,25 @@ function CustomerAdd () {
           }
 
         const options = {
-            headers: {"content-type": "application/json"}
+            headers: {"content-type": "application/json",'Authorization': localStorage.getItem("apple_bees")
+        
+          }
         }
 
-       
+       try{
           axios.post('http://127.0.0.1:8000/customer/v1/customers', customer,options)
             .then(res => {
               console.log(res);
               console.log(res.data);
+                return alert("Data Sent")
             })
+        }
+        catch(err){
+            if (err.response.status===401) alert("Unauthorized. Please login.");
+            console.error(err);
+        }
             
   
-      return alert('Entered Values are: '+firstname+','+lastname +','+birthdate)
     };
     return (
         <div>

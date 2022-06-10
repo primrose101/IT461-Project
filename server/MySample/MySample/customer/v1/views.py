@@ -37,9 +37,9 @@ class CustomersView(GenericAPIView):
     
     def post(self,request,user_id=None,format=None):
         """Authorize request first."""
-        #authorization = JwtAuthorization.is_authorized(request)
-        #if not authorization['is_authorized']:
-        #  return Response({'detail':authorization['detail']}, status=authorization['status'])
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+          return Response({'detail':authorization['detail']}, status=authorization['status'])
 
         """No POST for single user query"""
         if user_id != None:

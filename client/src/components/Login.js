@@ -32,6 +32,7 @@ const Login = () => {
             console.log(res);
             console.log(res.data); // {token: 'eyJ0eX...'}
             localStorage["apple_bees"] = res.data.token
+            localStorage["userid"] = res.data.id
             nav("/home");
         })
         .catch((error) => {

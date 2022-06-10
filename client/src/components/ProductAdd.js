@@ -85,19 +85,20 @@ function ProductAdd() {
     form_data.append("color",color);
     form_data.append("description",desc);
 
-    
-axios.post('http://localhost:8000/dashboard/v1/products', form_data, {
+    try{
+        axios.post('http://localhost:8000/dashboard/v1/products', form_data, {
             headers: {
-                "Content-Type": "multipart/form-data",
+                "Content-Type": "multipart/form-data",'Authorization': localStorage.getItem("apple_bees")
             },
         }).then((res) => {
             console.log(res);
         });
-
-      
-
-      
-      return alert("Successs!")
+        return alert("Data Sent")
+    }
+        catch(err){
+            if (err.response.status===401) alert("Unauthorized. Please login.");
+            console.error(err);
+    }
     };
     return (
         <div>

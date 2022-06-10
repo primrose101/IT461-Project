@@ -6,8 +6,8 @@ import { Form, Button, Container, Alert ,Modal} from 'react-bootstrap';
 
 function DashboardBuy () {
 
-    //needed logged inn user
-    const userid = 1;
+  
+    const userid = localStorage.getItem('userid');
 
     const [showModal, setShow] = useState(false);
     const [prodBuyName, setProdBuyName] = useState('');
@@ -73,7 +73,7 @@ function DashboardBuy () {
        
     }
     const options = {
-        headers: {"content-type": "application/json"}
+        headers: {"content-type": "application/json",'Authorization': localStorage.getItem("apple_bees")}
     }
     const product = {
         quantity:quantity,
@@ -83,11 +83,17 @@ function DashboardBuy () {
       }
     const buy = ()=>{
         product['product'] = buyObject['id']
-          axios.post('http://127.0.0.1:8000/dashboard/v1/orders', product,options)
+          try{
+            axios.post('http://127.0.0.1:8000/dashboard/v1/orders', product,options)
             .then(res => {
               console.log(res);
               console.log(res.data);
             })
+        }
+            catch(err){
+                if (err.response.status===401) alert("Unauthorized. Please login.");
+                console.error(err);
+            }
             setCount(1)
             setBuyObject(null)
             handleClose()

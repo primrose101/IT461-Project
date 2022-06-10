@@ -38,9 +38,9 @@ class ProductsView(GenericAPIView):
     
     def post(self,request,product_id=None,format=None): 
         """Authorize request first."""
-        #authorization = JwtAuthorization.is_authorized(request)
-        #if not authorization['is_authorized']:
-        #   return Response({'detail':authorization['detail']}, status=authorization['status'])
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+           return Response({'detail':authorization['detail']}, status=authorization['status'])
 
         """No POST for single product query"""
         if product_id != None:
@@ -218,9 +218,9 @@ class OrdersView(GenericAPIView):
     
     def post(self,request,order_id=None,format=None): 
         """Authorize request first."""
-        #authorization = JwtAuthorization.is_authorized(request)
-        #if not authorization['is_authorized']:
-        #   return Response({'detail':authorization['detail']}, status=authorization['status'])
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+           return Response({'detail':authorization['detail']}, status=authorization['status'])
 
         """No POST for single query"""
         if order_id != None:
