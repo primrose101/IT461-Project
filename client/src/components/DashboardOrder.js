@@ -13,10 +13,6 @@ function DashboardOrder () {
 
     const [url, setUrl] = useState('http://localhost:8000/dashboard/v1/orders');
     const getData = async (url, options) => {
-        const token = localStorage.getItem("apple_bees");
-        if (token!=null) {
-            url += "/?token=" + token;
-        }
         setUrl(url);
         try {
             const response = await axios.get(url, options);
@@ -32,6 +28,9 @@ function DashboardOrder () {
         const controller = new AbortController();
         getData(url, {
             signal: controller.signal,
+            headers: {
+                'Authorization': localStorage.getItem("apple_bees")
+            }
         });
         return () => {
             controller.abort();
