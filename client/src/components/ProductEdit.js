@@ -83,6 +83,7 @@ function ProductEdit(product) {
     
     axios.put('http://localhost:8000/dashboard/v1/products', form_data, {
             headers: {
+                "Authorization": localStorage.getItem("apple_bees"),
                 "Content-Type": "multipart/form-data",
             },
         }).then((res) => {
@@ -132,7 +133,7 @@ function ProductEdit(product) {
                     <Form.Group  controlId="form.photos">
                         <Form.Label>Photos</Form.Label>
                         <Form.Control type ="file" name="image_url"
-                        accept="image/jpeg,image/png,image/gif"  onChange={photoHandler} placeholder="Photos"/>
+                        accept="image/jpeg,image/png,image/gif" onChange={photoHandler} placeholder="Photos" required/>
                     </Form.Group>
                     <Form.Group  controlId="form.desc">
                         <Form.Label>Description</Form.Label>
