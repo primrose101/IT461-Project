@@ -3,6 +3,7 @@ import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import Aside from "./Aside";
 import axios from "axios";
 import CustomerAdd from "./CustomerAdd";
+import CustomerEdit from "./CustomerEdit";
 
 function DashboardCustomer () {
 
@@ -78,7 +79,7 @@ function DashboardCustomer () {
                                 <td>{ d['email'] }</td>
                                 <td>{ d['contact'] }</td>
                                 <td>
-                                    <button className="btn btn-warning btn-sm">Edit</button>
+                                    <button><CustomerEdit info={d}/></button>
                                     <span> </span>
                                     <button className="btn btn-danger btn-sm" onClick={() => deleteItem({"id": d["id"]})}>Delete</button>
                                 </td>

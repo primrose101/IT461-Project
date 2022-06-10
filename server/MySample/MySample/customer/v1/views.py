@@ -132,9 +132,9 @@ class CustomersView(GenericAPIView):
     
     def put(self,request,user_id=None,format=None):
         """Authorize request first."""
-        authorization = JwtAuthorization.is_authorized(request)
-        if not authorization['is_authorized']:
-            return Response({'detail':authorization['detail']}, status=authorization['status'])
+        # authorization = JwtAuthorization.is_authorized(request)
+        # if not authorization['is_authorized']:
+        #     return Response({'detail':authorization['detail']}, status=authorization['status'])
 
         data = request.data 
         if type(data) == dict:
@@ -145,7 +145,7 @@ class CustomersView(GenericAPIView):
         for d in data:
             if 'id' in d:
                 valid_data.append(d)
-        ids = []
+        ids = [] 
         for d in valid_data:
             ids.append(d['id'])
         user_queryset = Customer.objects.filter(id__in=ids)
@@ -163,9 +163,9 @@ class CustomersView(GenericAPIView):
 
     def delete(self,request,user_id=None,format=None):
         """Authorize request first."""
-        authorization = JwtAuthorization.is_authorized(request)
-        if not authorization['is_authorized']:
-            return Response({'detail':authorization['detail']}, status=authorization['status'])
+        # authorization = JwtAuthorization.is_authorized(request)
+        # if not authorization['is_authorized']:
+        #     return Response({'detail':authorization['detail']}, status=authorization['status'])
 
         data = request.data
         if type(data) == dict:
