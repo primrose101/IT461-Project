@@ -13,12 +13,21 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    }
+        
+        const response = await axios.post(Login,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true
+            }
+        );
+    } 
 
     return (
         <div className="Login">
         <Form onSubmit={handleSubmit}>
-          <Form.Group size="lg" controlId="email">
+          <Form.Group size="lg">
             <Form.Label>Username</Form.Label>
                 <Form.Control
                     type="text"
@@ -29,7 +38,7 @@ const Login = () => {
                     required
                 />
           </Form.Group>
-          <Form.Group size="lg" controlId="password">
+          <Form.Group size="lg">
             <Form.Label>Password</Form.Label>
                 <Form.Control
                     type="password"
@@ -45,7 +54,6 @@ const Login = () => {
         </Form>
       </div>
     );
-
 }
 
 export default Login
