@@ -17,12 +17,17 @@ function DashboardCustomer () {
 
     const [url, setUrl] = useState('http://localhost:8000/customer/v1/customers');
     const getData = async (url, options) => {
+        const token = localStorage.getItem("apple_bees");
+        if (token!=null) {
+            url += "/?token=" + token;
+        }
         setUrl(url);
         try {
             const response = await axios.get(url, options);
             console.log(response.data);
             setData(response.data);
         } catch (err) {
+            if (err.response.status===401) alert("Unauthorized. Please login.");
             console.error(err);
         }
     }

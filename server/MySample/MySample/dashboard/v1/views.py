@@ -16,7 +16,7 @@ from jwt_auth.v1.views import JwtAuthorization
 
 class ProductsView(GenericAPIView):
     serializer_class = serializers.ProductsSerializer
-    # authentication_classes = [authentication.TokenAuthentication]
+    authentication_classes = [authentication.TokenAuthentication]
     queryset = Product.objects.all()
     pagination_class = HeaderLimitOffsetPagination
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
