@@ -14,14 +14,22 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const response = await axios.post(Login,
+        axios.post('http://127.0.0.1:8000/v1/auth/token',
+            JSON.stringify({
+                username: user,
+                password: pwd
+            }),
             {
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 withCredentials: true
             }
-        );
+        )
+        .then(res => {
+            console.log(res);
+            console.log(res.data); // {token: 'eyJ0eX...'}
+        });
     } 
 
     return (

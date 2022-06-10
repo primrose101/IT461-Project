@@ -5,8 +5,7 @@ import { Form, Button, Container, Alert ,Modal} from 'react-bootstrap';
 import moment from 'moment';
 
 function CustomerEdit(param) {
-    // const location = useLocation();
-    // const customer = location.state.customer;
+  
     const [data] = useState({
         'id': param['info'].id,
         'firstname': param['info'].firstname,
@@ -102,21 +101,20 @@ function CustomerEdit(param) {
             password:password,
             contact:contact
         }
-        console.log(customer)
+        
           const options = {
               headers: {'content-type': 'application/json'}
           }
           
          
-          axios.put('http://127.0.0.1:8000/customer/v1/customers' , customer,options)
+        axios.put('http://127.0.0.1:8000/customer/v1/customers' , customer,options)
             .then(res => {
               console.log(res);
               console.log(res.data);
             })
             
             
-    
-        return alert('Info Updated')
+        return alert('Information Updated')
     };
     return (
         <div>
@@ -166,7 +164,7 @@ function CustomerEdit(param) {
                         <Form.Control type='tel' value={contact} onChange={contactHandler} placeholder='Contact' />
                     </Form.Group> 
                     <br/>
-                    <Button className='btn btn-warning btn-sm'>Update</Button>
+                    <Button className='btn btn-warning btn-sm' type="submit" >Update</Button>
                 </Form>
                 </Container>
                 </Alert>

@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import axios from "axios";
 import { Form, Button, Container, Alert ,Modal} from 'react-bootstrap';
-import moment from "moment";
 
-function ProductAdd() {
+
+function ProductEdit(product) {    
     const [showModal, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [category, setCategory] = useState('');
-    const [brand, setBrand] = useState('');
-    const [prodname, setProdName] = useState('');
-    const [stock, setStock] = useState('');
-    const [size, setSize] = useState('');
-    const [price, setPrice] = useState('');
-    const [photo, setPhoto] = useState(null);
-    const [color, setColor] = useState('');
-    const [desc, setDesc] = useState('');
+    const [id] = useState(product['info'].id);
+    const [datereg] = useState(product['info'].datereg)
+    const [category, setCategory] = useState(product['info'].category);
+    const [brand, setBrand] = useState(product['info'].brand);
+    const [prodname, setProdName] = useState(product['info'].name);
+    const [stock, setStock] = useState(product['info'].stocks);
+    const [size, setSize] = useState(product['info'].size);
+    const [price, setPrice] = useState(product['info'].price);
+    const [photo, setPhoto] = useState(product['info'].image);
+    const [color, setColor] = useState(product['info'].color);
+    const [desc, setDesc] = useState(product['info'].description);
 
     const categoryHandler = (event) => {
       setCategory(event.target.value);
@@ -52,14 +54,7 @@ function ProductAdd() {
         setDesc(event.target.value);
     };
 
-
-  
-  
-    const submitHandler = (event) => {
-      event.preventDefault();
-
-        let date_create = moment().format("YYYY-MM-DD")
-        //reset the values of input fields
+    const submitHandler = () => {
 
         setBrand('');
         setCategory('');
@@ -72,9 +67,9 @@ function ProductAdd() {
         setDesc('');
 
     let form_data = new FormData();
-    form_data.append("id","");
+    form_data.append("id",id);
     form_data.append("image",photo);
-    form_data.append("datereg",date_create );
+    form_data.append("datereg",datereg);
     form_data.append("category", category);
     form_data.append("name", prodname);
     form_data.append("brand", brand);
@@ -86,7 +81,7 @@ function ProductAdd() {
     form_data.append("description",desc);
 
     
-axios.post('http://localhost:8000/dashboard/v1/products', form_data, {
+    axios.put('http://localhost:8000/dashboard/v1/products', form_data, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
@@ -94,48 +89,45 @@ axios.post('http://localhost:8000/dashboard/v1/products', form_data, {
             console.log(res);
         });
 
-      
-
-      
-      return alert("Successs!")
+      return alert("Product Information Updated")
     };
     return (
         <div>
-            <button class="btn btn-primary"  onClick= {handleShow} >Add Product</button>
+            <button className='btn btn-warning btn-sm' display='inline-block'  onClick= {handleShow} >Edit</button>
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Product</Modal.Title>
+                        <Modal.Title>{id}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body> <Alert variant='primary'>
                 <Container>
                 <Form onSubmit={submitHandler}>
                 <Form.Group  controlId="form.category">
                         <Form.Label>Category</Form.Label>
-                        <Form.Control type="text" value={category} onChange={categoryHandler}placeholder="Category" required/>
+                        <Form.Control type="text" value={category} onChange={categoryHandler}placeholder="Category" />
                     </Form.Group>
                 <Form.Group  controlId="form.brand">
                         <Form.Label>Brand</Form.Label>
-                        <Form.Control type="text" value={brand} onChange={brandHandler}placeholder="Brand" required/>
+                        <Form.Control type="text" value={brand} onChange={brandHandler}placeholder="Brand" />
                     </Form.Group>
                     <Form.Group controlId="form.name">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" value={prodname} onChange={nameHandler} placeholder="Name" required/>
+                        <Form.Control type="text" value={prodname} onChange={nameHandler} placeholder="Name" />
                     </Form.Group>
                     <Form.Group  controlId="form.color">
                         <Form.Label>Size</Form.Label>
-                        <Form.Control type="text" value={color} onChange={colorHandler} placeholder="Color" required/>
+                        <Form.Control type="text" value={color} onChange={colorHandler} placeholder="Color" />
                     </Form.Group>
                     <Form.Group  controlId="form.size">
                         <Form.Label>Size</Form.Label>
-                        <Form.Control type="number" value={size} onChange={sizeHandler} placeholder="Size" required/>
+                        <Form.Control type="number" value={size} onChange={sizeHandler} placeholder="Size" />
                     </Form.Group>
                     <Form.Group  controlId="form.price">
                         <Form.Label>Price</Form.Label>
-                        <Form.Control type="number" value={price} onChange={priceHandler} placeholder="Price" required/>
+                        <Form.Control type="number" value={price} onChange={priceHandler} placeholder="Price" />
                     </Form.Group>
                     <Form.Group  controlId="form.stock">
                         <Form.Label>Stock</Form.Label>
-                        <Form.Control type="number" value={stock} onChange={stockHandler} placeholder="Stock" required/>
+                        <Form.Control type="number" value={stock} onChange={stockHandler} placeholder="Stock" />
                     </Form.Group>
                     <Form.Group  controlId="form.photos">
                         <Form.Label>Photos</Form.Label>
@@ -148,7 +140,7 @@ axios.post('http://localhost:8000/dashboard/v1/products', form_data, {
                     </Form.Group>
                   
                     <br/>
-                    <Button type='submit'>Add Product</Button>
+                    <Button type='submit'>Update Product</Button>
                 </Form>
                 </Container>
                 </Alert>
@@ -162,4 +154,4 @@ axios.post('http://localhost:8000/dashboard/v1/products', form_data, {
             </div>
     );
 }
-export default ProductAdd;
+export default ProductEdit;
