@@ -65,8 +65,6 @@ function DashboardOrder () {
                     { data['previous']!==null && <button className="btn btn-link" onClick={() => getData(data['previous']) }>Previous</button> }
                     { data['next']!==null && <button className="btn btn-link" onClick={() => getData(data['next']) }>Next</button> }
                 </div>
-
-                <button className="btn btn-primary">Add Product</button>
             </div>
         </div>
     );

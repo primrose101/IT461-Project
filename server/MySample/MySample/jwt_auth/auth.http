@@ -5,8 +5,8 @@ GET {{host}}/v1/auth/token
 Content-Type: application/json
 
 {
-  "username": "john.doe",
-  "password": "john"
+  "username": "mark Sai",
+  "password": "simdesierto"
 }
 
 ### Verify Token
@@ -14,7 +14,7 @@ GET {{host}}/v1/auth/verify
 Content-Type: application/json
 
 {
-  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NywidXNlcm5hbWUiOiJzdGV2ZS5oYXJ2ZXkiLCJleHAiOjE2NTQ3ODQ5NTl9.vqG5HdSWTkslznE3X07GyosuQQSKBC626XPx2nOfAAU"
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtYXJrIFNhaSIsImV4cCI6MTY1NDkyMjU0Nn0.W7YlRoOAKcCtnqMeHWlusdHQWzu7I-7wh8pvj6_VdZY"
 }
 
 # ### Verify Token
