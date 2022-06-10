@@ -13,7 +13,7 @@ function DashboardProduct () {
     });
 
     const [url, setUrl] = useState('http://localhost:8000/dashboard/v1/products');
-    const getData = async (url, options=null) => {
+    const getData = async (url, options={headers:{'Authorization': localStorage.getItem("apple_bees")}}) => {
         setUrl(url);
         try {
             const response = await axios.get(url, options);
@@ -99,7 +99,7 @@ function DashboardProduct () {
                 </table> 
 
                 <div align="right">
-                    { data['previous']!==null && <button className="btn btn-link" onClick={() => getData(data['previous']) }>Previous</button> }
+                    { data['previous']!==null && <button className="btn btn-link" onClick={() => getData(data['previous'])}>Previous</button> }
                     { data['next']!==null && <button className="btn btn-link" onClick={() => getData(data['next']) }>Next</button> }
                 </div>
                 <ProductAadd/>

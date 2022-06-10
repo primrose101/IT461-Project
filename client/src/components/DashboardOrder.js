@@ -12,7 +12,7 @@ function DashboardOrder () {
     });
 
     const [url, setUrl] = useState('http://localhost:8000/dashboard/v1/orders');
-    const getData = async (url, options) => {
+    const getData = async (url, options={headers:{'Authorization': localStorage.getItem("apple_bees")}}) => {
         setUrl(url);
         try {
             const response = await axios.get(url, options);

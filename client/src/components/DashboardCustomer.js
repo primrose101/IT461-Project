@@ -16,7 +16,7 @@ function DashboardCustomer () {
     });
 
     const [url, setUrl] = useState('http://localhost:8000/customer/v1/customers');
-    const getData = async (url, options) => {
+    const getData = async (url, options={headers:{'Authorization': localStorage.getItem("apple_bees")}}) => {
         setUrl(url);
         try {
             const response = await axios.get(url, options);
