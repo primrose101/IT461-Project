@@ -29,7 +29,7 @@ const Login = () => {
         .then(res => {
             console.log(res);
             console.log(res.data); // {token: 'eyJ0eX...'}
-            #alert(res.data.token)
+            //alert(res.data.token)
             localStorage["apple_bees"] = res.data.token
         })
         .catch((error) => {
