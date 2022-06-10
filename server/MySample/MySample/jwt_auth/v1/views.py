@@ -9,11 +9,11 @@ import json
 from rest_framework import status as request_status
 
 class CreateTokenView(APIView):
-  def get(self, request):
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
-    username = body['username']
-    password = body['password']
+  def post(self, request):
+    data = request.data
+    print(data)
+    username = data['username']
+    password = data['password']
     token = JwtToken.create(username, password)
     if token:
       return Response({'token': token})
@@ -21,11 +21,10 @@ class CreateTokenView(APIView):
       return Response({'error': 'Invalid username or password.'}, status=request_status.HTTP_404_NOT_FOUND)
 
 class VerifyTokenView(APIView):
-  def get(self, request):
+  def post(self, request):
     #token = request.headers['Authorization']
-    body_unicode = request.body.decode('utf-8')
-    body = json.loads(body_unicode)
-    token = body['token']
+    data = request.data
+    token = data['token']
     return Response(JwtToken.verify(token))
 
 class JwtToken:
