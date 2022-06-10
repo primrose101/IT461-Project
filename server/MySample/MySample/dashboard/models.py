@@ -15,7 +15,6 @@ class Product(models.Model):
     price = models.FloatField(max_length = 50)
     description = models.CharField(max_length = 10000)
     image = models.ImageField(upload_to='images', null=True, blank=True)
-    isDeleted = models.BooleanField(default=False)
 
     class Meta:
         db_table = "Product"
@@ -27,7 +26,6 @@ class Person(models.Model):
     address = models.CharField(max_length=100)
     birthdate = models.DateField(default = datetime.now())
     birthplace = models.CharField(max_length=100)
-    isDeleted = models.BooleanField(default=False)
     
     class Meta:
         db_table = "Person"

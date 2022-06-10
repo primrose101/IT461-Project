@@ -24,7 +24,6 @@ class CustomersView(GenericAPIView):
     pagination_class = HeaderLimitOffsetPagination
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     filterset_fields={
-        'isDeleted':['exact','iexact'],
         'dateregistered':['exact','iexact','lte','gte'],
         'address':['exact','iexact','contains'],
         'username':['exact','iexact','contains']
@@ -62,7 +61,7 @@ class CustomersView(GenericAPIView):
             """when token is availabel"""
             # return Response({"user":serializer.data,"token":token_key})
 
-            return Response({"user":serializer.data})
+            return Response({"customer":serializer.data})
         
         return Response(serializer.errors, status=request_status.HTTP_400_BAD_REQUEST)
 
@@ -85,7 +84,7 @@ class CustomersView(GenericAPIView):
         response:Response = None
         user_exists,user_queryset = self.check_user_exists_with_user_id(user_id)
         if not user_exists:
-            response = Response({"detail":"User does not exist"},status = request_status.HTTP_404_NOT_FOUND)
+            response = Response({"detail":"Customer does not exist"},status = request_status.HTTP_404_NOT_FOUND)
         else:
             """if user is authenticated show all filtered details, else send unauthorized access"""
             # if request.user.is_authenticated:
@@ -120,7 +119,7 @@ class CustomersView(GenericAPIView):
         response:Response = None
         user_exists,user_queryset = self.check_user_exists_with_user_id(user_id)
         if not user_exists:
-            response = Response({"detail":"User does not exist"},status = request_status.HTTP_404_NOT_FOUND)
+            response = Response({"detail":"Customer does not exist"},status = request_status.HTTP_404_NOT_FOUND)
         else:
             user = user_queryset.first()
             serializer = serializers.CustomersSerializer(user,data=request.data,partial=True)
@@ -152,7 +151,7 @@ class CustomersView(GenericAPIView):
         user_queryset = Customer.objects.filter(id__in=ids)
         response:Response=None
         if len(user_queryset) == 0:
-            response = Response({"detail":"No user matching the specified id/s are found"},status = request_status.HTTP_404_NOT_FOUND)
+            response = Response({"detail":"No customer matching the specified id/s are found"},status = request_status.HTTP_404_NOT_FOUND)
         else:    
             serializer = serializers.CustomersSerializer(user_queryset,data=valid_data,many=True)
             if serializer.is_valid():
@@ -163,10 +162,10 @@ class CustomersView(GenericAPIView):
         return response
 
     def delete(self,request,user_id=None,format=None):
-        """Authorize request first."""
-        authorization = JwtAuthorization.is_authorized(request)
-        if not authorization['is_authorized']:
-            return Response({'detail':authorization['detail']}, status=authorization['status'])
+        # """Authorize request first."""
+        # authorization = JwtAuthorization.is_authorized(request)
+        # if not authorization['is_authorized']:
+        #     return Response({'detail':authorization['detail']}, status=authorization['status'])
 
         data = request.data
         if type(data) == dict:
@@ -179,8 +178,8 @@ class CustomersView(GenericAPIView):
         ids = []
         for d in valid_data:
             ids.append(d['id'])
-        user_queryset = Customer.objects.filter(id__in=ids).update(isDeleted=True)
-        message = str(user_queryset) + " Customer instance/s are deleted"
+        user_queryset = Customer.objects.filter(id__in=ids).delete()
+        message = str(user_queryset[0]//2) + " Customer instance/s are deleted"
         
         return Response({"detail":message},status = request_status.HTTP_200_OK)
 

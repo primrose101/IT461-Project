@@ -22,7 +22,6 @@ class ProductsView(GenericAPIView):
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     parser_classes = (MultiPartParser, FormParser, JSONParser)
     filterset_fields={
-        'isDeleted':['exact','iexact'],
         'datereg':['exact','iexact','lte','gte'],
         'name':['exact','iexact','contains'],
         'category':['exact','iexact','contains'],
@@ -197,8 +196,8 @@ class ProductsView(GenericAPIView):
         ids = []
         for d in valid_data:
             ids.append(d['id'])
-        product_queryset = Product.objects.filter(id__in=ids).update(isDeleted=True)
-        message = str(product_queryset) + " Product instance/s are deleted"
+        product_queryset = Product.objects.filter(id__in=ids).delete()
+        message = str(product_queryset[0]) + " Product instance/s are deleted"
         
         return Response({"detail":message},status = request_status.HTTP_200_OK)
 
