@@ -3,6 +3,7 @@ import Aside from "./Aside";
 import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import axios from "axios";
 import ProductAadd from "./ProductAdd";
+import ProductEdit from "./ProductEdit";
 
 function DashboardProduct () {
     const [data, setData] = useState({
@@ -83,7 +84,8 @@ function DashboardProduct () {
                                     <img src={ d['image'] } alt={ d['id'] } width="auto" height="80px" />
                                 </td>
                                 <td>
-                                    <button className="btn btn-warning btn-sm">Edit</button>
+                                   
+                                    <button class="btn btn-outline-light btn-sm"><ProductEdit info={d}/></button>
                                     <span> </span>
                                     <button className="btn btn-danger btn-sm" onClick={() => deleteItem({"id": d["id"]})}>Delete</button>
                                 </td>
