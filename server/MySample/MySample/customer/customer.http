@@ -1,7 +1,7 @@
 @host = http://127.0.0.1:8000
 
 ### Create Token
-GET {{host}}/v1/auth/token
+POST {{host}}/v1/auth/token
 Content-Type: application/json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### Verify Token
-GET {{host}}/v1/auth/verify
+POST {{host}}/v1/auth/verify
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ### GET Customers Valid Token
 GET {{host}}/customer/v1/customers
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huLmRvZSIsImV4cCI6MTY1NDg3NDM5M30.gHSMUOt_w7mNnnDAPr_0MAqXKheTXeWShrnl1WW4agw
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huLmRvZSIsImV4cCI6MTY1NDk2MTAyOX0.HAzQK9nHun2U536XTBmKnkp3lkUiNvZQ93Kv5pT8cFs
 Content-Type: application/json
 
 ### GET Customers Invalid/Expired Token

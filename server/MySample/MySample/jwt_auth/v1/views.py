@@ -22,7 +22,6 @@ class CreateTokenView(APIView):
 
 class VerifyTokenView(APIView):
   def post(self, request):
-    #token = request.headers['Authorization']
     data = request.data
     token = data['token']
     return Response(JwtToken.verify(token))
