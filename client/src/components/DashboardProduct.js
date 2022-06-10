@@ -42,6 +42,7 @@ function DashboardProduct () {
         console.log(options)
         console.log(options['id'])
         try {
+            options.headers = {'Authorization': localStorage.getItem("apple_bees")}
             const response = await axios.delete('http://127.0.0.1:8000/dashboard/v1/products/' + options['id'], options);
             console.log(response.data);
 
