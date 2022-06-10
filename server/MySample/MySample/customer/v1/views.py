@@ -162,10 +162,10 @@ class CustomersView(GenericAPIView):
         return response
 
     def delete(self,request,user_id=None,format=None):
-        # """Authorize request first."""
-        # authorization = JwtAuthorization.is_authorized(request)
-        # if not authorization['is_authorized']:
-        #     return Response({'detail':authorization['detail']}, status=authorization['status'])
+        """Authorize request first."""
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+            return Response({'detail':authorization['detail']}, status=authorization['status'])
 
         data = request.data
         if type(data) == dict:
