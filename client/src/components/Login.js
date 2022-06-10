@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Login.css";
@@ -7,6 +8,7 @@ import axios from 'axios';
 
 
 const Login = () => {
+    const nav = useNavigate();
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
 
@@ -29,17 +31,14 @@ const Login = () => {
         .then(res => {
             console.log(res);
             console.log(res.data); // {token: 'eyJ0eX...'}
-            //alert(res.data.token)
             localStorage["apple_bees"] = res.data.token
+            nav("/home");
         })
         .catch((error) => {
             if (error.response) {
                 if (error.response.status === 403) {
                     alert("Invalid username or password.")
                 }
-                // console.error(error.response.data);
-                // console.error(error.response.status);
-                // console.error(error.response.headers);
             } else if (error.request) {
             console.error(error.request);
             } else {
