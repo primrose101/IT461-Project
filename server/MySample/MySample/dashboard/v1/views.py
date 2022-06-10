@@ -71,9 +71,9 @@ class ProductsView(GenericAPIView):
     
     def get(self,request,product_id=None,format=None):
         """Authorize request first."""
-        #authorization = JwtAuthorization.is_authorized(request)
-        #if not authorization['is_authorized']:
-        #   return Response({'detail':authorization['detail']}, status=authorization['status'])
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+          return Response({'detail':authorization['detail']}, status=authorization['status'])
         
         """Get all users. Only allow if user is authenticated."""
         if product_id == None:
@@ -240,9 +240,9 @@ class OrdersView(GenericAPIView):
 
     def get(self,request,order_id=None,format=None):
         """Authorize request first."""
-        #authorization = JwtAuthorization.is_authorized(request)
-        #if not authorization['is_authorized']:
-        #   return Response({'detail':authorization['detail']}, status=authorization['status'])
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+          return Response({'detail':authorization['detail']}, status=authorization['status'])
         
         """Get all users. Only allow if user is authenticated."""
         if order_id == None:

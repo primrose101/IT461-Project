@@ -34,7 +34,7 @@ const Login = () => {
         })
         .catch((error) => {
             if (error.response) {
-                if (error.response.status == 403) {
+                if (error.response.status === 403) {
                     alert("Invalid username or password.")
                 }
                 // console.error(error.response.data);

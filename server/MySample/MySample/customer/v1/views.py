@@ -67,9 +67,9 @@ class CustomersView(GenericAPIView):
 
     def get(self,request,user_id=None,format=None):
         """Authorize request first."""
-        #authorization = JwtAuthorization.is_authorized(request)
-        #if not authorization['is_authorized']:
-        #   return Response({'detail':authorization['detail']}, status=authorization['status'])
+        authorization = JwtAuthorization.is_authorized(request)
+        if not authorization['is_authorized']:
+          return Response({'detail':authorization['detail']}, status=authorization['status'])
 
         """Get all users. Only allow if user is authenticated."""
         if user_id == None:
