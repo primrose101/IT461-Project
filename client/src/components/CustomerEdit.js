@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import {useLocation } from "react-router-dom";
 import '../bootstrap-4.0.0-dist/css/bootstrap.min.css'
 import axios from 'axios';
 import { Form, Button, Container, Alert ,Modal} from 'react-bootstrap';
@@ -78,19 +77,16 @@ function CustomerEdit(param) {
         
   
         let date_create = moment().format('YYYY-MM-DD')
-
-           
-            // customer.firstname=firstname;
-            // customer.lastname=lastname;
-            // customer.dateregistered=date_create;
-            // customer.address=address;
-            // customer.birthdate=birthdate;
-            // customer.birthplace=birthplace;
-            // customer.isDeleted=false;
-            // customer.email=email;
-            // customer.username=username;
-            // customer.password=password;
-            // customer.contact=contact;
+ 
+        setFirstName('');
+        setLastName('');
+        setAddress('');
+        setBirthDate('');
+        setBirthPlace('');
+        setContact('');
+        setEmail('');
+        setPassword('');
+        setUserName('');
            
         const customer = {
             id:id,
@@ -106,24 +102,22 @@ function CustomerEdit(param) {
             password:password,
             contact:contact
         }
-        
-        //param(customer)
-  
+        console.log(customer)
           const options = {
               headers: {'content-type': 'application/json'}
           }
           
          
-            axios.post('http://127.0.0.1:8000/customer/v1/customers',customer,options)
-              .then(res => {
-                console.log(res);
-                console.log(res.data);
-              })
+          axios.put('http://127.0.0.1:8000/customer/v1/customers' , customer,options)
+            .then(res => {
+              console.log(res);
+              console.log(res.data);
+            })
             
             
     
         return alert('Info Updated')
-      };
+    };
     return (
         <div>
             <button className='btn btn-warning btn-sm'  onClick= {handleShow}>Edit</button>
