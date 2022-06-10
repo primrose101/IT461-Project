@@ -16,6 +16,8 @@ function Aside(param) {
                 <Link to="/dashboard/buy" class={ param['active']==="buy" ? "btn btn-primary btn-lg btn-block" : "btn btn-outline-secondary btn-lg btn-block" }>Buy</Link>
                 <br />
                 <Link to="/dashboard/orders" class={ param['active']==="orders" ? "btn btn-primary btn-lg btn-block" : "btn btn-outline-secondary btn-lg btn-block" }>Orders</Link>
+                <br />
+                <Link to="/login" class={ param['active']==="login" ? "btn btn-primary btn-lg btn-block" : "btn btn-outline-secondary btn-lg btn-block" }>Login</Link>
             </div>
         </aside>
     );
