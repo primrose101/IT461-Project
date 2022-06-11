@@ -1,0 +1,252 @@
+@host = http://127.0.0.1:8000
+
+
+### Create Token
+POST {{host}}/v1/auth/token
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "password": "doe_john"
+}
+
+### POST SINGLE
+POST {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+{
+  "username" : "janedoe",
+  "firstname" : "Jane",
+  "lastname" : "Doe",
+  "address" : "Abad St. Cebu City, Cebu",
+  "password" : "doe_jane",
+  "birthplace" : "Cebu City, Cebu",
+  "email" : "jane.doe@gmail.com",
+  "contact" : "09123456788",
+  "birthdate": "1999-12-12"
+}
+
+### POST SINGLE WITH MISSING FIELDS
+POST {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+{
+  "username" : "janedoe",
+  "firstname" : "Jane"
+}
+
+### POST SINGLE WITH ID
+POST {{host}}/customer/v1/customers/2
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+{
+  "username" : "janedoe",
+  "firstname" : "Jane"
+}
+
+### POST MULTIPLE
+POST {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+[
+    {
+    "username" : "charliebrown",
+    "firstname" : "Charlie",
+    "lastname" : "Brown",
+    "address" : "Abad St. Cebu City, Cebu",
+    "password" : "charlie_brown",
+    "birthplace" : "Cebu City, Cebu",
+    "email" : "charlie.brown@gmail.com",
+    "contact" : "09123456788",
+    "birthdate": "1999-12-12"
+    },
+    {
+    "username" : "davidgreen",
+    "firstname" : "David",
+    "lastname" : "Green",
+    "address" : "Abad St. Cebu City, Cebu",
+    "password" : "green_david",
+    "birthplace" : "Cebu City, Cebu",
+    "email" : "david.green@gmail.com",
+    "contact" : "09123456788",
+    "birthdate": "1999-12-12"
+    }
+]
+
+### POST MULTIPLE WITH MISSING FIELDS
+POST {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+[
+    {
+    "username" : "charliebrown",
+    "firstname" : "Charlie"
+    },
+    {
+    "username" : "davidgreen",
+    "firstname" : "David",
+    "lastname" : "Green",
+    "address" : "Abad St. Cebu City, Cebu",
+    "birthdate": "1999-12-12"
+    }
+]
+
+### GET ALL
+GET {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+### POST MULTIPLE TO SHOW PAGINATION
+POST {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+[
+    {
+    "username" : "charliebrown2",
+    "firstname" : "Charlie2",
+    "lastname" : "Brown2",
+    "address" : "Abad St. Cebu City, Cebu",
+    "password" : "charlie_brown2",
+    "birthplace" : "Cebu City, Cebu",
+    "email" : "charlie.brown2@gmail.com",
+    "contact" : "09123456788",
+    "birthdate": "1999-12-12"
+    },
+    {
+    "username" : "davidgreen2",
+    "firstname" : "David2",
+    "lastname" : "Green",
+    "address" : "Abad St. Cebu City, Cebu",
+    "password" : "green_david2",
+    "birthplace" : "Cebu City, Cebu",
+    "email" : "david.green2@gmail.com",
+    "contact" : "09123456788",
+    "birthdate": "1999-12-12"
+    },
+    {
+    "username" : "charliebrown3",
+    "firstname" : "Charlie3",
+    "lastname" : "Brown3",
+    "address" : "Abad St. Cebu City, Cebu",
+    "password" : "charlie_brown3",
+    "birthplace" : "Cebu City, Cebu",
+    "email" : "charlie.brown3@gmail.com",
+    "contact" : "09123456788",
+    "birthdate": "1999-12-12"
+    },
+    {
+    "username" : "davidgreen3",
+    "firstname" : "David3",
+    "lastname" : "Green3",
+    "address" : "Abad St. Cebu City, Cebu",
+    "password" : "green_david3",
+    "birthplace" : "Cebu City, Cebu",
+    "email" : "david.green3@gmail.com",
+    "contact" : "09123456788",
+    "birthdate": "1999-12-12"
+    }
+]
+
+### GET ALL WITH PAGINATION
+GET {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+### GET SINGLE
+GET {{host}}/customer/v1/customers/2
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+### GET SPECIFIC FIELD (USERNAME, FIRSTNAME, LASTNAME)
+GET {{host}}/customer/v1/customers/2?fields=username,firstname,lastname
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+### GET WITH CONDITIONAL FILTER (USER with username containing doe and firstname contain J)
+GET {{host}}/customer/v1/customers?username__contains=doe&firstname__contains=J
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+### GET with Search
+GET {{host}}/customer/v1/customers?search=jane
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+### GET Combination
+GET {{host}}/customer/v1/customers?username__contains=doe&search=John&fields=username,firstname,lastname
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+### PUT SINGLE
+PUT {{host}}/customer/v1/customers/2
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+{
+  "username" : "janedoe",
+  "firstname" : "Jane",
+  "lastname" : "Doe",
+  "address" : "Abad St. Cebu City, Cebu",
+  "password" : "doe_jane",
+  "birthplace" : "Cebu City, Cebu",
+  "email" : "jane.doe@gmail.com",
+  "contact" : "09123456788",
+  "birthdate": "1999-12-12"
+}
+
+### PUT MULTIPLE
+PUT {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+[
+    {
+    "id":"2",
+  "username" : "janedoe2_modified",
+  "firstname" : "Jane2Modified",
+  "lastname" : "Doe",
+  "address" : "Abad St. Cebu City, Cebu",
+  "password" : "doe_jane",
+  "birthplace" : "Cebu City, Cebu",
+  "email" : "jane.doe@gmail.com",
+  "contact" : "09123456788",
+  "birthdate": "1999-12-12"
+    },
+    {
+    "id":"3",
+  "username" : "janedoe3_modified",
+  "firstname" : "Jane3Modified",
+  "lastname" : "Doe",
+  "address" : "Abad St. Cebu City, Cebu",
+  "password" : "doe_jane",
+  "birthplace" : "Cebu City, Cebu",
+  "email" : "jane.doe@gmail.com",
+  "contact" : "09123456788",
+  "birthdate": "1999-12-12"
+    }
+]
+
+### DELETE SINGLE
+DELETE {{host}}/customer/v1/customers/2
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+### DELETE MULTIPLE
+DELETE {{host}}/customer/v1/customers
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJqb2huZG9lIiwiZXhwIjoxNjU1MDIxMjA2fQ.Y2iciyRjmRP2oIELsOZYHE_dLCeJ54LvZsxh5tp4ya0
+Content-Type: application/json
+
+[
+    {
+        "id":"3"
+    },
+    {
+        "id":"4"
+    }
+]
