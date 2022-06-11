@@ -16,7 +16,10 @@ class CreateTokenView(APIView):
     password = data['password']
     token = JwtToken.create(username, password)
     if token:
-      return Response({'token': token})
+      customer = Customer.objects.filter(username=username, password=password)
+      serializer = CustomersSerializer(customer, many=True) #serializer.data
+      id = serializer.data[0]['id']
+      return Response({'token': token, 'id': id})
     else:
       return Response({'error': 'Invalid username or password.'}, status=request_status.HTTP_403_FORBIDDEN)
 
