@@ -26,9 +26,11 @@ class CustomersView(GenericAPIView):
     filterset_fields={
         'dateregistered':['exact','iexact','lte','gte'],
         'address':['exact','iexact','contains'],
-        'username':['exact','iexact','contains']
+        'username':['exact','iexact','contains'],
+        'lastname':['exact','iexact','contains'],
+        'firstname':['exact','iexact','contains']
     }
-    search_fields = ['username','firstName', 'lastName']
+    search_fields = ['username','firstname', 'lastname']
     
     """Create only if user is admin"""
     
