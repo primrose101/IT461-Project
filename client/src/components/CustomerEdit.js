@@ -103,7 +103,8 @@ function CustomerEdit(param) {
         }
         
           const options = {
-              headers: {'content-type': 'application/json'}
+            "Authorization": localStorage.getItem("apple_bees"),
+             headers: {'content-type': 'application/json'}
           }
           
          
